@@ -55,6 +55,7 @@ Route::get('clear', function () {
     \Artisan::call('key:generate');
     \Artisan::call('cache:clear');
     \Artisan::call('config:clear');
+    \Artisan::call('passport:install');
 
     dd("Cache is cleared");
 });

@@ -3,6 +3,7 @@
 /public/storage
 /storage/*.key
 *.7z
+*.zip
 *.bat
 /vendor
 .env

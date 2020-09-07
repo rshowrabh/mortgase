@@ -77,7 +77,7 @@
                     <v-file-input show-size label="Picture" @change="selectFilePicture"></v-file-input>
                   </v-col>
                   <v-col cols="12" sm="12" md="12">
-                    <v-color-picker v-model="editedItem.color_system" elevation="15"></v-color-picker>
+                    <v-color-picker v-model="editedItem.color_system" flat></v-color-picker>
                   </v-col>
                 </v-row>
               </v-container>
