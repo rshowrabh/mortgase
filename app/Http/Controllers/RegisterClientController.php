@@ -18,9 +18,9 @@ class RegisterClientController extends Controller
      */
 
 
-    public function index()
+    public function welcome()
     {
-        return view('client.index');
+        return view('client.welcome.question');
     }
 
 

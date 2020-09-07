@@ -18,11 +18,17 @@ class AgentColorResource extends JsonResource
             return [
                 'color_system' => $this->color_system,
                 'logo' => $this->logo,
+                'agent_license_number' => $this->agent_license_number,
+                'name' => $this->name,
+                'phone' => $this->phone,
             ];
         } else {
             return [
                 'color_system' => '#FFF',
                 'logo' => 'logo.png',
+                'agent_license_number' => null,
+                'name' => null,
+                'phone' => null,
             ];
         }
     }

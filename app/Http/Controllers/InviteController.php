@@ -43,6 +43,16 @@ class InviteController extends Controller
 
         // send the email
         Mail::to($request->get('email'))->send(new InviteCreated($invite));
+        if (Mail::failures()) {
+            return response()->json([
+                'status'  => false,
+                'message' => 'Nnot sending mail.. retry again...'
+            ]);
+        }
+        return response()->json([
+            'status'  => true,
+            'message' => 'Your details mailed successfully'
+        ]);
 
         // redirect back where we came from
         return redirect()

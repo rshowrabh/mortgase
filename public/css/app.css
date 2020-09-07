@@ -13511,3 +13511,7 @@ a.text-dark:focus {
   padding: 5px;
 }
 
+.border-nav {
+  border-bottom: 2px solid yellow;
+}
+

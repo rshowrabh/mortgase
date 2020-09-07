@@ -25,7 +25,7 @@ class HomeController extends Controller
     public function index()
     {
         if (Auth::user()->isClient()) {
-            return view('client.index');
+            return view('client.welcome.index');
         }
         return view('home');
     }

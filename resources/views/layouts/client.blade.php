@@ -38,6 +38,9 @@ $.ajax({
         $('#logo').attr('src', '/storage/images/'+agent.logo )
         $('#logo').css('border-color', agent.color_system)
         $('#button1').css('border-color', agent.color_system)
+        $('#agent_license').text(agent.agent_license_number) 
+        $('#agent_name').text(agent.name) 
+        $('#agent_phone').text(agent.phone) 
         
         $("#button1").hover(function(){
   $(this).css('background-color', agent.color_system);

@@ -31,6 +31,17 @@ class InviteCreated extends Mailable
     public function build()
     {
 
-        return $this->from('example@admin.com')->markdown('emails.invite');
+        return $this->from('laravel@yourmortgageappy.ca')->markdown('emails.invite');
+        //     $address = '_mainaccount@yourmortgageappy.ca';
+        //     $subject = 'This is a demo!';
+        //     $name = 'Jane Doe';
+
+        //     return $this->view('emails.invite')
+        //                 ->from($address, $name)
+        //                 ->cc($address, $name)
+        //                 ->bcc($address, $name)
+        //                 ->replyTo($address, $name)
+        //                 ->subject($subject)
+        //                 ->with([ 'test_message' => $this->invite['email'] ]);
     }
 }

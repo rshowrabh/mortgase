@@ -2,6 +2,6 @@
 
 @section('content')
    
-    <question></question>
+   <question></question>
 
 @endsection

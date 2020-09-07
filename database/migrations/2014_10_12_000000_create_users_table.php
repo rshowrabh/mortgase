@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('broker_license')->nullable();
             $table->string('agent_license_number')->nullable();
             $table->string('logo')->default('logo.png');
-            $table->string('color_system')->default('#FF0000FF');
+            $table->string('color_system')->default('#FFFFFFF');
             $table->boolean('lock_logo_color')->default(0);
             $table->string('picture')->default('picture.png');
             $table->string('email')->unique();

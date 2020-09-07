@@ -22,7 +22,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/client', 'RegisterClientController@index')->name('index.client');
-Route::get('/client_question', 'RegisterClientController@question')->name('client.question');
+Route::get('/client_welcome', 'RegisterClientController@welcome')->name('client.welcome');
+Route::get('/client_question', 'ClientQuestionController@index')->name('client.question');
 
 Route::post('/register_client', 'RegisterClientController@create')->name('register.client');
 
@@ -37,6 +38,7 @@ Route::get('invite', 'InviteController@invite')->name('invite');
 Route::post('invite', 'InviteController@process')->name('process');
 // {token} is a required parameter that will be exposed to us in the controller method
 Route::get('accept/{token}', 'InviteController@accept')->name('accept');
+
 
 
 
