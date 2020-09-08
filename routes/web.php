@@ -23,10 +23,14 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/client', 'RegisterClientController@index')->name('index.client');
 Route::get('/client_welcome', 'RegisterClientController@welcome')->name('client.welcome');
+
 Route::get('/client_question', 'ClientQuestionController@index')->name('client.question');
+Route::post('/client_question/store', 'ClientQuestionController@store')->name('client.question.store');
 
 Route::post('/register_client', 'RegisterClientController@create')->name('register.client');
 
+
+Route::get('/workflow_one', 'ClientQuestionController@workflowOne')->name('workflow.one');
 
 
 Route::group(['middleware' => 'admin'], function () {
@@ -58,4 +62,8 @@ Route::get('clear', function () {
     \Artisan::call('passport:install');
 
     dd("Cache is cleared");
+});
+
+Route::get('logout', function () {
+    Auth::logout();
 });

@@ -28,3 +28,5 @@ Route::put('users/{id}', 'API\UsersController@update');
 Route::get('agent', 'API\AgentController@index');
 Route::get('get_agent_data', 'API\AgentController@getAgentData');
 Route::put('agent/{id}', 'API\AgentController@update');
+
+Route::post('/client_question/wave_one/store', 'ClientQuestionController@waveOne')->name('client.question.store');

@@ -61,6 +61,7 @@ const router = new VueRouter({
 
 
 Vue.component('question', require('./components/Question.vue').default);
+Vue.component('wave_one', require('./components/WaveOne.vue').default);
 
 
 Vue.component(

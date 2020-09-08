@@ -70,4 +70,9 @@ class User extends Authenticatable
 
         return false;
     }
+
+    public function waveOne()
+    {
+        return $this->hasOne(WaveOne::class, 'user_id', 'id');
+    }
 }

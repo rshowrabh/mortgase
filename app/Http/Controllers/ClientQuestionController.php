@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\WaveOne;
 
 class ClientQuestionController extends Controller
 {
@@ -21,9 +22,17 @@ class ClientQuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function waveOne(Request $request)
     {
-        //
+        $user = auth('api')->user();
+        $wave_one = $user->waveOne->update($request->all());
+
+        if ($request->q7 == 1 || $request->q7 == 2) {
+            $url = '/workflow_one';
+            return response()->json(['url' => $url]);
+        };
+
+        return $request->all();
     }
 
     /**
@@ -34,7 +43,11 @@ class ClientQuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = auth()->user();
+        $phone = $user->waveOne()->firstOrNew([]);
+        $phone->about_me = $request->about_me;
+        $phone->save();
+        return redirect(route('client.question'));
     }
 
     /**
@@ -43,9 +56,9 @@ class ClientQuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function workflowOne()
     {
-        //
+        return view('client.wave_one');
     }
 
     /**

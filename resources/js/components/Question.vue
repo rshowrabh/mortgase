@@ -22,10 +22,10 @@
               <h4 class="mx-auto text-center">Ok great!</h4>
               <h2 class="mx-auto">What is your legal name?</h2>
               <v-form ref="form">
-                <v-text-field v-model="user.q_1.title" label="Title"></v-text-field>
-                <v-text-field v-model="user.q_1.first_name" label="Legal First Name"></v-text-field>
-                <v-text-field v-model="user.q_1.middle_name" label="Middle Initial (optional)"></v-text-field>
-                <v-text-field v-model="user.q_1.last_name" label="Legal Last Name"></v-text-field>
+                <v-text-field v-model="user.q1.title" label="Title"></v-text-field>
+                <v-text-field v-model="user.q1.first_name" label="Legal First Name"></v-text-field>
+                <v-text-field v-model="user.q1.middle_name" label="Middle Initial (optional)"></v-text-field>
+                <v-text-field v-model="user.q1.last_name" label="Legal Last Name"></v-text-field>
               </v-form>
             </v-col>
           </v-row>
@@ -44,7 +44,7 @@
               Are you canadian citizen
               <br />or parmanent resident
             </h1>
-            <v-radio-group v-model="user.q_2" row>
+            <v-radio-group v-model="user.q2" row>
               <v-radio label="Yes" value="yes"></v-radio>
               <v-radio label="No" value="no"></v-radio>
             </v-radio-group>
@@ -63,14 +63,14 @@
               <h4 class="mx-auto text-center">Ok great!</h4>
               <h2 class="mx-auto">What is address?</h2>
               <v-form ref="form">
-                <v-text-field v-model="user.q_3.street_no" label="Street No"></v-text-field>
-                <v-text-field v-model="user.q_3.street_name" label="Street  Name"></v-text-field>
-                <v-text-field v-model="user.q_3.direction" label="Direction(optional)"></v-text-field>
-                <v-text-field v-model="user.q_3.unit_no" label="Unit No (optional)"></v-text-field>
-                <v-text-field v-model="user.q_3.city" label="City"></v-text-field>
-                <v-text-field v-model="user.q_3.province" label="Province"></v-text-field>
-                <v-text-field v-model="user.q_3.postal_code" label="Postal Code"></v-text-field>
-                <v-text-field v-model="user.q_3.country" label="Country"></v-text-field>
+                <v-text-field v-model="user.q3.street_no" label="Street No"></v-text-field>
+                <v-text-field v-model="user.q3.street_name" label="Street  Name"></v-text-field>
+                <v-text-field v-model="user.q3.direction" label="Direction(optional)"></v-text-field>
+                <v-text-field v-model="user.q3.unit_no" label="Unit No (optional)"></v-text-field>
+                <v-text-field v-model="user.q3.city" label="City"></v-text-field>
+                <v-text-field v-model="user.q3.province" label="Province"></v-text-field>
+                <v-text-field v-model="user.q3.postal_code" label="Postal Code"></v-text-field>
+                <v-text-field v-model="user.q3.country" label="Country"></v-text-field>
               </v-form>
             </v-col>
           </v-row>
@@ -85,7 +85,7 @@
           <v-row align="center" justify="center">
             <v-col cols="12" md="5">
               <h2 class="mx-auto my-2">What is date of birth?</h2>
-              <v-date-picker v-model="user.q_4"></v-date-picker>
+              <v-date-picker v-model="user.q4"></v-date-picker>
             </v-col>
           </v-row>
         </v-card>
@@ -99,7 +99,7 @@
           <v-row align="center" justify="center">
             <v-col cols="12" md="5">
               <h1>What is your marital Status</h1>
-              <v-radio-group v-model="user.q_6" :mandatory="false">
+              <v-radio-group v-model="user.q6" :mandatory="false">
                 <v-radio label="Married" value="married"></v-radio>
                 <v-radio label="Single" value="single"></v-radio>
               </v-radio-group>
@@ -107,50 +107,32 @@
           </v-row>
         </v-card>
 
-        <v-btn :color="this.color" @click="e1 = 6">Continue</v-btn>
+        <v-btn :color="this.color" @click="sendData">Continue</v-btn>
 
         <v-btn text>Cancel</v-btn>
       </v-stepper-content>
+
       <v-stepper-content step="6">
         <v-card class="mb-12 mt-5 border" color="lighten-1" height="auto">
-          <v-row align="center" justify="center">
-            <v-col cols="12" md="5">
-              <h1>Do you have any dependents</h1>
-              <v-select
-                label="select"
-                v-model="user.q_7"
-                :items="['1','2']"
-                data-vv-name="select"
-                required
-              ></v-select>
-            </v-col>
-          </v-row>
-        </v-card>
-
-        <v-btn :color="this.color" @click="e1 = 7">Continue</v-btn>
-
-        <v-btn text>Cancel</v-btn>
-      </v-stepper-content>
-      <v-stepper-content step="7">
-        <v-card class="mb-12 mt-5 border" color="lighten-1" height="auto">
+          <h1>Do you have any dependents</h1>
           <v-row align="center" justify="center">
             <v-col cols="12" md="4">
               <div class="text-center icon">
                 <img width="50px" class="img-fluid" src="/dist/img/logo.png" alt />
-                <v-btn class="icon_button" :color="this.color">Mortgase PreApproval</v-btn>
+                <v-btn @click="q7(1)" class="icon_button" :color="this.color">Mortgase PreApproval</v-btn>
               </div>
             </v-col>
 
             <v-col cols="12" md="4">
               <div class="text-center icon">
                 <img width="50px" class="img-fluid" src="/dist/img/logo.png" alt />
-                <v-btn class="icon_button" :color="this.color">New Home Purchage</v-btn>
+                <v-btn @click="q7(2)" class="icon_button" :color="this.color">New Home Purchage</v-btn>
               </div>
             </v-col>
             <v-col cols="12" md="4">
               <div class="text-center icon">
                 <img width="50px" class="img-fluid" src="/dist/img/logo.png" alt />
-                <v-btn class="icon_button" :color="this.color">
+                <v-btn @click="q7(3)" class="icon_button" :color="this.color">
                   Refinancing my
                   <br />Existing Mortgage
                 </v-btn>
@@ -159,7 +141,7 @@
             <v-col cols="12" md="4">
               <div class="text-center icon">
                 <img width="50px" class="img-fluid" src="/dist/img/logo.png" alt />
-                <v-btn class="icon_button" :color="this.color">
+                <v-btn @click="q7(4)" class="icon_button" :color="this.color">
                   Home Equity Line of
                   <br />Credit
                 </v-btn>
@@ -168,7 +150,7 @@
             <v-col cols="12" md="4">
               <div class="text-center icon">
                 <img width="50px" class="img-fluid" src="/dist/img/logo.png" alt />
-                <v-btn class="icon_button" :color="this.color">
+                <v-btn @click="q7(5)" class="icon_button" :color="this.color">
                   Second Mortgage/
                   <br />Debt consolidation
                 </v-btn>
@@ -177,7 +159,7 @@
             <v-col cols="12" md="4">
               <div class="text-center icon">
                 <img width="50px" class="img-fluid" src="/dist/img/logo.png" alt />
-                <v-btn class="icon_button" :color="this.color">Reverse Mortgage</v-btn>
+                <v-btn @click="q7(6)" class="icon_button" :color="this.color">Reverse Mortgage</v-btn>
               </div>
             </v-col>
             <v-col cols="12" md="4">
@@ -192,15 +174,11 @@
             <v-col cols="12" md="4">
               <div class="text-center icon">
                 <img width="50px" class="img-fluid" src="/dist/img/logo.png" alt />
-                <v-btn class="icon_button" :color="this.color">Transfer My Mortgage</v-btn>
+                <v-btn @click="q7(7)" class="icon_button" :color="this.color">Transfer My Mortgage</v-btn>
               </div>
             </v-col>
           </v-row>
         </v-card>
-
-        <v-btn :color="this.color" @click="sendData">Submit</v-btn>
-
-        <v-btn text>Cancel</v-btn>
       </v-stepper-content>
     </v-stepper-items>
   </v-stepper>
@@ -212,15 +190,15 @@ export default {
   data() {
     return {
       e1: 1,
-      steps: 7,
+      steps: 6,
       color: "primary",
       agent: {},
       user: {
-        q_1: {},
-        q_2: "",
-        q_3: {},
-        q_4: "",
-        q_6: "",
+        q1: {},
+        q2: "",
+        q3: {},
+        q4: "",
+        q6: "",
       },
     };
   },
@@ -233,8 +211,25 @@ export default {
   },
 
   methods: {
+    q7(val) {
+      axios
+        .post("api/client_question/wave_one/store", {
+          q7: val,
+        })
+        .then((response) => {
+          console.log(response.data);
+          window.location = response.data.url;
+        });
+    },
     sendData() {
-      console.log(this.user);
+      axios
+        .post("api/client_question/wave_one/store", {
+          ...this.user,
+        })
+        .then((response) => {
+          console.log(response.data);
+          this.e1 = 6;
+        });
     },
     getAgentData() {
       axios.get("api/get_agent_data").then((response) => {
