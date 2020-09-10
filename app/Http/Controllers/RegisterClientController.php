@@ -17,6 +17,10 @@ class RegisterClientController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    public function index()
+    {
+        return view('client.welcome.index');
+    }
 
     public function welcome()
     {

@@ -40,7 +40,7 @@ class LoginController extends Controller
     }
     public function redirectTo()
     {
-        if (!Auth::user()->isClient()) {
+        if (Auth::user()->isAdmin() || Auth::user()->isAgent() || Auth::user()->isBroker()) {
 
             $this->redirectTo = '/home';
             return $this->redirectTo;
