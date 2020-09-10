@@ -7,7 +7,7 @@
         <v-spacer></v-spacer>
         <v-dialog v-model="dialog" max-width="50%">
           <template v-slot:activator="{ on, attrs }">
-            <v-btn color="primary" dark class="mb-2" v-bind="attrs" v-on="on">New Brokerage</v-btn>
+            <v-btn color="primary" dark class="mb-2" v-bind="attrs" v-on="on">New Agent</v-btn>
           </template>
           <v-card>
             <v-card-title>
@@ -272,7 +272,7 @@ export default {
 
     save() {
       axios
-        .post("/api/users/", {
+        .post("/api/users", {
           ...this.editedItem,
         })
         .then((response) => {
