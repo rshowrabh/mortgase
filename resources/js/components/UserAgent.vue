@@ -168,6 +168,8 @@ export default {
       password: "",
       logo: "",
       color_system: "#FF0000FF",
+      role: 2,
+      brokerage: "",
     },
     defaultItem: {
       name: "",

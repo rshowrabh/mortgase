@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use App\User;
 use DB;
 use Cache;
+use App\UserRealtion;
 
 class UsersController extends Controller
 {
@@ -28,11 +29,46 @@ class UsersController extends Controller
     {
 
         $this->authorize('isAdmin');
-        $users = User::with('roles')->get();
+        $users = User::whereHas('roles', function ($query) {
+            $query->where('id', '!=', 1);
+        })
+            ->get();
+        return  $users;
 
         return  $users;
     }
+    public function agent()
+    {
 
+
+        // $this->authorize('isAdmin');
+        $user = auth('api')->user();
+
+        $users = User::whereHas('agent', function ($q) {
+            $q->where('broker_id', auth()->user()->id);
+        })
+            ->get();
+
+        if ($user->isAdmin()) {
+            $user = User::whereHas('roles', function ($query) {
+                $query->where('id', 2);
+            })
+                ->get();
+            return  $user;
+        }
+
+        return  $users;
+    }
+    public function brokerage()
+    {
+
+        // $this->authorize('isAdmin');
+        $users = User::whereHas('roles', function ($query) {
+            $query->where('id', 4);
+        })
+            ->get();
+        return  $users;
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -41,7 +77,7 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        $this->authorize('isAdmin');
+
         $this->validate($request, [
             'name' => 'required|string|max:191',
             'email' => 'required|string|email|max:191|unique:users',
@@ -58,13 +94,18 @@ class UsersController extends Controller
         \Image::make($request->logo)->save(public_path('/storage/images/' . $name));
         \Image::make($request->picture)->save(public_path('/storage/images/' . $name_picture));
 
-        $input = $request->all();
+        $input = $request->except('role');
         $input['logo'] = $name;
         $input['picture'] = $name_picture;
         $input['password'] = Hash::make($input['password']);
         $user = User::create($input);
-        $user->roles()->attach(2);
-        return $user;
+        $user->roles()->attach($request->role);
+
+
+        UserRealtion::create(['broker_id' => auth()->user()->id, 'agent_id' => $user->id]);
+
+
+        return response()->json($user);
     }
 
     /**
@@ -99,7 +140,7 @@ class UsersController extends Controller
 
 
         if (trim($request->password) == '') {
-            $input = $request->except(['password', 'roles']);
+            $input = $request->except(['password', 'roles', 'role']);
         } else {
             $input = $request->except('roles');
             $input['password'] = bcrypt($input['password']);

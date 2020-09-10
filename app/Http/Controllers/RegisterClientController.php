@@ -31,7 +31,7 @@ class RegisterClientController extends Controller
      */
     public function create(Request $request)
     {
-        $data = $request->all();
+        $data = $request->except('role');
         $validatedData = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -44,9 +44,8 @@ class RegisterClientController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
-        $invite = Invite::where('email', $request->email)->first()->update(['token' => $user->id]);
 
-        $user->roles()->attach(3);
+        $user->roles()->attach($request->role);
 
         Auth::loginUsingId($user->id);
         return redirect('/home');

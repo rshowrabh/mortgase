@@ -20,7 +20,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 // Admin
 Route::get('users/', 'API\UsersController@index');
-Route::post('users/', 'API\UsersController@store')->middleware('admin');
+Route::get('users/agent', 'API\UsersController@agent');
+Route::get('users/brokerage', 'API\UsersController@brokerage');
+Route::get('users/client', 'API\UsersController@client');
+Route::post('users/', 'API\UsersController@store');
 Route::delete('users/{id}', 'API\UsersController@destroy');
 Route::put('users/{id}', 'API\UsersController@update');
 

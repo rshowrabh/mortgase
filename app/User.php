@@ -70,7 +70,21 @@ class User extends Authenticatable
 
         return false;
     }
+    public function isBroker()
+    {
+        foreach ($this->roles()->get() as $role) {
+            if ($role->id == 4) {
+                return true;
+            }
+        }
 
+        return false;
+    }
+
+    public function agent()
+    {
+        return $this->hasMany(UserRealtion::class, 'agent_id', 'id');
+    }
     public function waveOne()
     {
         return $this->hasOne(WaveOne::class, 'user_id', 'id');

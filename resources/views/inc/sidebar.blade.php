@@ -38,7 +38,24 @@
                 <li class="nav-item">
                    <router-link to="/user_agent" class="nav-link">
                         <i class="fas fa-circle nav-icon"></i>
-                        <p>User Agent</p>
+                        <p>All User</p>
+                    </router-link>
+                </li>
+                @endcan
+                @canany(['isAdmin'])
+                <li class="nav-item">
+                   <router-link to="/brokerage" class="nav-link">
+                        <i class="fas fa-circle nav-icon"></i>
+                        <p>Brokerage</p>
+                    </router-link>
+                </li>
+                @endcan
+                
+                @canany(['isAdmin','isBroker'])
+                <li class="nav-item">
+                   <router-link to="/agent" class="nav-link">
+                        <i class="fas fa-circle nav-icon"></i>
+                        <p>Agent</p>
                     </router-link>
                 </li>
                 @endcan

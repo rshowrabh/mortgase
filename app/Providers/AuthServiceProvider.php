@@ -36,6 +36,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('isClient', function ($user) {
             return $user->roles->first()->id == 3;
         });
+        Gate::define('isBroker', function ($user) {
+            return $user->roles->first()->id == 4;
+        });
 
 
         // Passport::routes();

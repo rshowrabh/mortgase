@@ -63,9 +63,6 @@ class InviteController extends Controller
     {
         // Look up the invite
 
-        if (strlen($token) < 14) {
-            abort(404);
-        }
 
         if (!$invite = Invite::where('token', $token)->first()) {
             //if the invite doesn't exist do something more graceful than this
