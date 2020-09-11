@@ -7,7 +7,7 @@
             <div class="col-5 mx-auto">
                 <form action="{{route('client.question.store')}}" method="post">@csrf
                 <textarea name='about_me' class="border" name="" id="" cols="60" rows="10" placeholder="Tell us about yourself"></textarea>
-                <button type="submit" class='btn btn-danger mt-2 text-white'>Continue</button>
+                <button type="submit" class='btn btn-danger mt-2 text-white btn-round'>Continue</button>
                 </form>
             </div>
             <div class="col-7 mx-auto">

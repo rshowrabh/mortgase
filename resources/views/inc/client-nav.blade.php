@@ -11,7 +11,7 @@
              <ul class="navbar-nav mr-auto d-block">
                  <h2>Mortgase Application</h2>
 
-                 <li class="agent_button">
+                 <li style='padding:5px;' class="agent">
 
                  </li>
 
@@ -19,9 +19,14 @@
                 <li>Agent Licesnse No : <span id='agent_license'>License</span></li>
                 <li>Agent Phone No : <span id='agent_phone'>Phone</span></li>
             </ul>
-            <ul class="navbar-nav ml-auto">
-                <a style="margin-left: 100px" class="navbar-brand img-fluid" href="#"><img 
-                id='logo' width="100px" src="/dist/img/avatar.png" class='img-fluid' alt=""></a>
+            <ul class="navbar-nav ml-auto d-flex">
+             
+                 <li> <a style="margin-left: 100px" class="navbar-brand" href="#">
+                    <img 
+                id='logo' width="100px" src="/dist/img/avatar.png" class='img-fluid' alt="">
+                <p class='text-black-50' id='broker_license'></p>
+                </a>
+            </li>
             </ul>
             <button id='button1' class="btn btn-outline-success my-2 my-sm-0"
                 type="submit">{{auth()->user()->name}}</button>
@@ -30,10 +35,4 @@
     </div>
 </nav>
 
-<style>
-    #logo, #picture{
-        height: 100px;
-        padding: 5px;
-        border:1px solid transparent;
-    }
-</style>
+

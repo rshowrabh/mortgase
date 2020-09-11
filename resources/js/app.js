@@ -13,7 +13,12 @@ require("./customEvents");
 
 require("./custom");
 
-import vuetify from './vuetify'
+import vuetify from "./vuetify";
+
+import VTooltip from "v-tooltip";
+
+Vue.use(VTooltip);
+Vue.config.productionTip = false;
 
 //Import View Router
 import VueRouter from "vue-router";
@@ -59,28 +64,26 @@ const router = new VueRouter({
 
 //Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
-
-Vue.component('question', require('./components/Question.vue').default);
-Vue.component('wave_one', require('./components/WaveOne.vue').default);
-
+Vue.component("question", require("./components/Question.vue").default);
+Vue.component("wave_one", require("./components/WaveOne.vue").default);
 
 Vue.component(
-    'passport-clients',
-    require('./components/passport/Clients.vue').default
+    "passport-clients",
+    require("./components/passport/Clients.vue").default
 );
 
 Vue.component(
-    'passport-authorized-clients',
-    require('./components/passport/AuthorizedClients.vue').default
+    "passport-authorized-clients",
+    require("./components/passport/AuthorizedClients.vue").default
 );
 
 Vue.component(
-    'passport-personal-access-tokens',
-    require('./components/passport/PersonalAccessTokens.vue').default
+    "passport-personal-access-tokens",
+    require("./components/passport/PersonalAccessTokens.vue").default
 );
 
 const app = new Vue({
     el: "#app",
     router,
-    vuetify,
+    vuetify
 });

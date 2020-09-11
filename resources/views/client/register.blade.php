@@ -149,6 +149,7 @@ $logo = $bid ? $bid->picture: '';
         localStorage.setItem('broker_banner',broker.broker.banner_color,60)
         localStorage.setItem('broker_body',broker.broker.body_color,60)
         localStorage.setItem('broker_button',broker.broker.button_color,60)
+        localStorage.setItem('broker_license',broker.broker.broker_license,60)
 
 
         localStorage.setItem('agent_picture',agent.picture,60)

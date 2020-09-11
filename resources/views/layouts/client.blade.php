@@ -1,5 +1,5 @@
 @include('inc.header')
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="">
 <div class="wrapper" id='app'>
 
   <!-- Navbar -->
@@ -33,19 +33,22 @@
      let agent_id =   localStorage.getItem('agent_id')
      let agent_name =   localStorage.getItem('agent_name')
      let agent_phone =   localStorage.getItem('agent_phone')
+     let broker_license =   localStorage.getItem('broker_license')
 
 
 
         $('#logo').attr('src', '/storage/images/'+agent_picture )
         $('#picture').attr('src', '/storage/images/'+broker_picture )
         $('#logo').css('border-color', broker_button)
-        $('#picture').css('border-color', 'broker_button')
+        $('#picture').css('border-color', broker_button)
         $('#button1').css('border-color', broker_button)
         $('.btn-round').css('background-color', broker_button)
-        $('.navbar-white').css('background-color', broker_body)
+        $('.navbar-white').css('background-color', broker_banner)
+        $('body').css('background-color', broker_body)
         $('#agent_license').text(agent_license_no) 
         $('#agent_name').text(agent_name) 
         $('#agent_phone').text(agent_phone) 
+        $('#broker_license').text(broker_license) 
         
         $("#button1").hover(function(){
       $(this).css('background-color', agent.color_system);
@@ -54,3 +57,11 @@
       });
 
 </script>
+
+<style>
+   #logo, #picture{
+        height: 100px;
+        padding: 5px;
+        border:1px solid transparent;
+    }
+</style>

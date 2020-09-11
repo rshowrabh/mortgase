@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Mail;
 use App\User;
 use Illuminate\Support\Str;
 use App\Http\Resources\AgentColorResource;
+use App\Agent;
 
 class InviteController extends Controller
 {
@@ -21,42 +22,25 @@ class InviteController extends Controller
 
     public function process(Request $request)
     {
-        // process the form submission and send the invite by email
-        $this->validate($request, [
-            'email' => 'required|string|email|max:191|unique:users|unique:invites',
-        ]);
+        $user = auth()->user();
+        $bid = Agent::where('user_id', $user->id)->first()->broker_id;
 
-        // validate the incoming request data
+        $agent = $user;
+        $agent_name = preg_replace('/\s+/', '', $agent->name);
 
-        do {
-            //generate a random string using Laravel's str_random helper
-            $token  = Str::random(16);
-        } //check if the token already exists and if it does, try again
-        while (Invite::where('token', $token)->first());
+        $broker = User::find($bid)->name;
+        $broker_name = preg_replace('/\s+/', '', $broker);
 
-        //create a new invite record
-        $invite = Invite::create([
-            'email' => $request->get('email'),
-            'token' => $token,
-            'user_id' => auth()->user()->id,
-        ]);
+        $url = env('APP_URL')  . $broker_name . '/' . $agent_name;
 
-        // send the email
-        Mail::to($request->get('email'))->send(new InviteCreated($invite));
+
+        Mail::to($request->get('email'))->send(new InviteCreated($url));
         if (Mail::failures()) {
             return response()->json([
                 'status'  => false,
                 'message' => 'Nnot sending mail.. retry again...'
             ]);
         }
-        return response()->json([
-            'status'  => true,
-            'message' => 'Your details mailed successfully'
-        ]);
-
-        // redirect back where we came from
-        return redirect()
-            ->back();
     }
 
     public function accept($token)

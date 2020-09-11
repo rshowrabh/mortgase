@@ -11,16 +11,16 @@ use App\Invite;
 class InviteCreated extends Mailable
 {
     use Queueable, SerializesModels;
-    public $invite;
+    public $url;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($invite)
+    public function __construct($url)
     {
-        $this->invite = $invite;
+        $this->url = $url;
     }
 
     /**

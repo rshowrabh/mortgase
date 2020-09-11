@@ -122,7 +122,7 @@ export default {
     return {
       e1: 1,
       steps: 6,
-      color: "primary",
+      color: localStorage.getItem("broker_button"),
       agent: {},
       user: {
         q1: {},

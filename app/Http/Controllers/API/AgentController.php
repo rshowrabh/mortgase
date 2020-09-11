@@ -74,9 +74,10 @@ class AgentController extends Controller
 
         if ($request->has('picture')) {
             $name_picture = time() . '.' . explode('/', explode(':', substr($request->picture, 0, strpos($request->picture, ';')))[1])[1];
+            \Image::make($request->picture)->save(public_path('/storage/images/' . $name_picture));
         }
 
-        \Image::make($request->picture)->save(public_path('/storage/images/' . $name_picture));
+
 
         $input = $request->except('role');
         $input['picture'] = $name_picture;
@@ -129,24 +130,59 @@ class AgentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+
     public function update(Request $request, $id)
     {
 
+        // $this->authorize('isAdmin');
+
+        $user = User::findOrFail($id);
         $this->validate($request, [
-            'email' => 'required',
-            'phone' => 'required|digits_between:8,15',
-            'password' => 'numeric|min:8',
+            'name' => 'required|string|max:191',
+            'email' => 'required|string|email|max:191',
+            'phone' => 'digits_between:8,15',
         ]);
 
-        $user = auth('api')->user();
-        if (trim($request->password) == '') {
-            $input = $request->except(['password', 'roles']);
-        } else {
-            $input = $request->except('roles');
-            $input['password'] = bcrypt($input['password']);
+        $input = $request->all();
+
+        $user = User::find($input['id']);
+        $user->name = $input['name'];
+        $user->email = $input['email'];
+
+
+
+        if (trim($request->password) !== '') {
+            $user->password = $input['password'];
         }
 
-        $user->update($input);
+
+        if ($request->hasFile('picture')) {
+
+            $input['picture'] = time() . '.' . explode('/', explode(':', substr($request->picture, 0, strpos($request->picture, ';')))[1])[1];
+
+
+            \Image::make($request->picture)->save(public_path('/storage/images/' . $input['picture']));
+
+            $user->picture = $input['picture'];
+        }
+
+
+
+
+        if ($user->save()) {
+            $agent = $user->agent()->firstOrNew([]);
+            $agent->agent_license_number = $input['agent_license_number'];
+            $agent->save();
+        }
+
+
+        $user->save();
+
+
+
+
+        return $request->all();
     }
 
     /**

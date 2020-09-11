@@ -34,6 +34,8 @@ class UniqueUrlController extends Controller
         $bid = User::whereRaw("REPLACE(`name`, ' ' ,'')  = ?", $broker)->with('broker')->first();
         $aid = User::whereRaw("REPLACE(`name`, ' ' ,'')  = ?", $agent)->with('agent')->first();
 
+
+
         // $agent = User::where
         return view('client.register', compact('bid', 'aid'));
     }

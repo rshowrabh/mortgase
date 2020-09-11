@@ -3,7 +3,7 @@
 
 <p>Someone has invited you </p>
 
-@component('mail::button', ['url' => route('accept', $invite->token)])
+@component('mail::button', ['url' => $url])
 Accept
 @endcomponent
 

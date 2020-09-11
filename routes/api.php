@@ -41,7 +41,7 @@ Route::resource('/broker', 'API\BrokerageController');
 
 
 Route::get('/getBroker', 'API\AgentController@getBroker');
-Route::post('/agent', 'API\AgentController@store');
+Route::resource('/agent', 'API\AgentController');
 
 
 Route::get('uniqueUrl', 'UniqueUrlController@url');

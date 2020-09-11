@@ -207,6 +207,8 @@
      let agent_id =   localStorage.getItem('agent_id')
      let agent_name =   localStorage.getItem('agent_name')
      let agent_phone =   localStorage.getItem('agent_phone')
+     let broker_license =   localStorage.getItem('broker_license')
+     
 
 
 
@@ -216,10 +218,12 @@
         $('#picture').css('border-color', broker_button)
         $('#button1').css('border-color', broker_button)
         $('.btn-round').css('background-color', broker_button)
-        $('.navbar-white').css('background-color', broker_body)
         $('#agent_license').text(agent_license_no) 
         $('#agent_name').text(agent_name) 
         $('#agent_phone').text(agent_phone) 
+        $('#broker_license').text(broker_license) 
+        $('.navbar-white').css('background-color', broker_banner)
+        $('body').css('background-color', broker_body)
         
         $("#button1").hover(function(){
       $(this).css('background-color', agent.color_system);
