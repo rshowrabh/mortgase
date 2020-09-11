@@ -1,8 +1,8 @@
 
 <?php
 
-$color = $agent ? $agent->color_system: '';
-$logo = $agent ? $agent->logo: '';
+$color = $bid ? $bid->brand_color: '';
+$logo = $bid ? $bid->picture: '';
 
 ?>
 
@@ -42,7 +42,7 @@ $logo = $agent ? $agent->logo: '';
 
                 <form method="POST" action="{{ route('register.client') }}">
                     @csrf
-
+                    <input type="hidden" name="agents_table_id", value="{{$aid->agent->id}}">
                     <div class="input-group mb-3">
                         <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
                             name="name" value="{{ old('name') }}" required autocomplete="name" autofocus
@@ -61,8 +61,8 @@ $logo = $agent ? $agent->logo: '';
                     
                     
                     <div class="input-group mb-3">
-                        <input readonly id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                            name="email" value="{{$email}}" required autocomplete="email"
+                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                            name="email"  required autocomplete="email"
                             placeholder="Enter Email">
 
 
@@ -126,7 +126,7 @@ $logo = $agent ? $agent->logo: '';
                         </div>
                         <!-- /.col -->
                         <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block">Register</button>
+                            <button type="submit" class="btn btn-primary btn-block btn-round">Register</button>
                         </div>
                         <!-- /.col -->
                     </div>
@@ -140,6 +140,23 @@ $logo = $agent ? $agent->logo: '';
     </div>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+        var broker = {!! json_encode($bid->toArray()) !!};
+        var agent = {!! json_encode($aid->toArray()) !!};
+        console.log(agent)
+
+        localStorage.setItem('broker_picture',broker.picture,60)
+        localStorage.setItem('broker_banner',broker.broker.banner_color,60)
+        localStorage.setItem('broker_body',broker.broker.body_color,60)
+        localStorage.setItem('broker_button',broker.broker.button_color,60)
+
+
+        localStorage.setItem('agent_picture',agent.picture,60)
+        localStorage.setItem('agent_license_no',agent.agent.agent_license_number,60)
+        localStorage.setItem('agent_phone',agent.phone,60)
+        localStorage.setItem('agent_name',agent.name,60)
+        localStorage.setItem('agent_id',agent.agent.id,60)
+    </script>
 
 </body>
 

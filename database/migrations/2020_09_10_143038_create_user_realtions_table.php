@@ -15,8 +15,8 @@ class CreateUserRealtionsTable extends Migration
     {
         Schema::create('user_realtions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('broker_id')->unsigned()->index();
-            $table->integer('agent_id')->unsigned()->index();
+            $table->integer('client_id')->unsigned()->index();
+            $table->integer('agents_table_id')->unsigned()->index();
             $table->timestamps();
         });
     }

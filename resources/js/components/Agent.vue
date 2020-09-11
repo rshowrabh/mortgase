@@ -17,6 +17,17 @@
             <v-card-text>
               <v-container>
                 <v-row>
+                  <v-col v-show="broker.length !== 0" cols="12" sm="6" md="6">
+                    <v-select
+                      :items="broker"
+                      label="Brokerage Name"
+                      dense
+                      outlined
+                      item-text="name"
+                      item-value="id"
+                      v-model="editedItem.broker"
+                    ></v-select>
+                  </v-col>
                   <v-col cols="12" sm="6" md="6">
                     <v-text-field v-model="editedItem.name" label="Name"></v-text-field>
                   </v-col>
@@ -44,20 +55,7 @@
                       @click:append="show3 = !show3"
                     ></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="6" md="6">
-                    <v-text-field
-                      v-model="editedItem.broker_name"
-                      label="Broker Name"
-                      @click:append="show3 = !show3"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12" sm="6" md="6">
-                    <v-text-field
-                      v-model="editedItem.broker_license"
-                      label="Broker License"
-                      @click:append="show3 = !show3"
-                    ></v-text-field>
-                  </v-col>
+
                   <v-col cols="12" sm="6" md="6">
                     <v-text-field
                       v-model="editedItem.agent_license_number"
@@ -67,17 +65,7 @@
                   </v-col>
 
                   <v-col cols="12" sm="6" md="6">
-                    <v-file-input show-size label="Logo" @change="selectFile"></v-file-input>
-                  </v-col>
-
-                  <v-col cols="12" sm="6" md="6">
-                    <v-checkbox v-model="editedItem.lock_logo_color" label="Lock logo and color"></v-checkbox>
-                  </v-col>
-                  <v-col cols="12" sm="6" md="6">
                     <v-file-input show-size label="Picture" @change="selectFilePicture"></v-file-input>
-                  </v-col>
-                  <v-col cols="12" sm="12" md="12">
-                    <v-color-picker v-model="editedItem.color_system" flat></v-color-picker>
                   </v-col>
                 </v-row>
               </v-container>
@@ -149,6 +137,7 @@ export default {
     password: "Password",
     dialog: false,
     dialog_view: false,
+    broker: "",
     headers: [
       {
         text: "id",
@@ -163,19 +152,10 @@ export default {
     desserts: [],
     editedIndex: -1,
     editedItem: {
-      name: "",
-      email: "",
-      password: "",
-      logo: "",
-      color_system: "#FF0000FF",
-      role: 2,
+      picture: "",
     },
     defaultItem: {
-      name: "",
-      email: "",
-      password: "",
-      logo: "",
-      color_system: "#FF0000FF",
+      picture: "",
     },
   }),
 
@@ -196,9 +176,20 @@ export default {
 
   created() {
     this.initialize();
+    this.loadBroker();
   },
 
   methods: {
+    loadBroker() {
+      try {
+        axios.get("/api/getBroker/").then((response) => {
+          console.log(response.data);
+          this.broker = [...response.data];
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    },
     handleClick(item) {
       this.editedIndex = this.desserts.indexOf(item);
       this.editedItem = Object.assign({}, item);
@@ -214,13 +205,6 @@ export default {
       reader.readAsDataURL(e);
     },
 
-    selectFile(e) {
-      let reader = new FileReader();
-      reader.onload = (eV) => {
-        this.editedItem.logo = eV.target.result;
-      };
-      reader.readAsDataURL(e);
-    },
     initialize() {
       try {
         axios.get("/api/users/agent").then((response) => {
@@ -272,7 +256,7 @@ export default {
 
     save() {
       axios
-        .post("/api/users", {
+        .post("/api/agent", {
           ...this.editedItem,
         })
         .then((response) => {

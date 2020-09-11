@@ -33,3 +33,15 @@ Route::get('get_agent_data', 'API\AgentController@getAgentData');
 Route::put('agent/{id}', 'API\AgentController@update');
 
 Route::post('/client_question/wave_one/store', 'ClientQuestionController@waveOne')->name('client.question.store');
+
+
+// ?\Broker Route::currentRouteAction();
+
+Route::resource('/broker', 'API\BrokerageController');
+
+
+Route::get('/getBroker', 'API\AgentController@getBroker');
+Route::post('/agent', 'API\AgentController@store');
+
+
+Route::get('uniqueUrl', 'UniqueUrlController@url');

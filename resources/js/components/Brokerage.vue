@@ -7,7 +7,7 @@
         <v-spacer></v-spacer>
         <v-dialog v-model="dialog" max-width="50%">
           <template v-slot:activator="{ on, attrs }">
-            <v-btn color="primary" dark class="mb-2" v-bind="attrs" v-on="on">New Agent</v-btn>
+            <v-btn color="primary" dark class="mb-2" v-bind="attrs" v-on="on">New Brokerage</v-btn>
           </template>
           <v-card>
             <v-card-title>
@@ -58,26 +58,28 @@
                       @click:append="show3 = !show3"
                     ></v-text-field>
                   </v-col>
-                  <v-col cols="12" sm="6" md="6">
-                    <v-text-field
-                      v-model="editedItem.agent_license_number"
-                      label="Agent License Number"
-                      @click:append="show3 = !show3"
-                    ></v-text-field>
-                  </v-col>
 
                   <v-col cols="12" sm="6" md="6">
                     <v-file-input show-size label="Logo" @change="selectFile"></v-file-input>
                   </v-col>
 
                   <v-col cols="12" sm="6" md="6">
-                    <v-checkbox v-model="editedItem.lock_logo_color" label="Lock logo and color"></v-checkbox>
+                    <v-checkbox v-model="editedItem.lock_color" label="Lock logo and color"></v-checkbox>
                   </v-col>
                   <v-col cols="12" sm="6" md="6">
                     <v-file-input show-size label="Picture" @change="selectFilePicture"></v-file-input>
                   </v-col>
-                  <v-col cols="12" sm="12" md="12">
-                    <v-color-picker v-model="editedItem.color_system" flat></v-color-picker>
+                  <v-col cols="12" sm="12" md="6">
+                    Banner Color
+                    <v-color-picker v-model="editedItem.banner_color" flat></v-color-picker>
+                  </v-col>
+                  <v-col cols="12" sm="12" md="6">
+                    Body Color
+                    <v-color-picker v-model="editedItem.body_color" flat></v-color-picker>
+                  </v-col>
+                  <v-col cols="12" sm="12" md="6">
+                    Button Color
+                    <v-color-picker v-model="editedItem.button_color" flat></v-color-picker>
                   </v-col>
                 </v-row>
               </v-container>
@@ -98,7 +100,7 @@
               {{editedItem.name}}
               <v-spacer></v-spacer>
               <v-avatar>
-                <v-img v-bind:src="'/storage/images/' + editedItem.logo" width="50px"></v-img>
+                <v-img v-bind:src="'/storage/images/' + editedItem.broker.logo" width="50px"></v-img>
               </v-avatar>
             </v-card-title>
 
@@ -117,9 +119,9 @@
                   <p>Agent License Number: {{editedItem.agent_license_number}}</p>
                   <p>
                     Color:
-                    <v-btn depressed large :color="editedItem.color_system">Text</v-btn>
+                    <v-btn depressed large :color="editedItem.button_color">Text</v-btn>
                   </p>
-                  <p>Lock Logo and Color: {{editedItem.lock_logo_color == 0 ?'False': 'True' }}</p>
+                  <p>Lock Logo and Color: {{editedItem.lock_color == 0 ?'False': 'True' }}</p>
                 </v-card-text>
               </div>
             </v-expand-transition>
@@ -166,16 +168,27 @@ export default {
       name: "",
       email: "",
       password: "",
-      logo: "",
-      color_system: "#FF0000FF",
-      role: 4,
+      picture: "picture.png",
+      broker: {
+        logo: "logo.png",
+      },
+      banner_color: "#FFFFFFF",
+      body_color: "#FFFFFFF",
+      button_color: "#FFFFFFF",
+      lock_color: false,
     },
     defaultItem: {
       name: "",
       email: "",
       password: "",
-      logo: "",
-      color_system: "#FF0000FF",
+      picture: "picture.png",
+      banner_color: "#FFFFFFF",
+      body_color: "#FFFFFFF",
+      button_color: "#FFFFFFF",
+      lock_color: false,
+      broker: {
+        logo: "logo.png",
+      },
     },
   }),
 
@@ -223,7 +236,7 @@ export default {
     },
     initialize() {
       try {
-        axios.get("/api/users/brokerage").then((response) => {
+        axios.get("/api/broker/").then((response) => {
           console.log(response.data);
           this.desserts = [...response.data];
         });
@@ -272,7 +285,7 @@ export default {
 
     save() {
       axios
-        .post("/api/users", {
+        .post("/api/broker/", {
           ...this.editedItem,
         })
         .then((response) => {
@@ -292,6 +305,12 @@ export default {
               title: obj[key][0],
             });
           });
+          setTimeout(() => {
+            Toast.fire({
+              icon: "error",
+              title: "fill all items",
+            });
+          }, 1000);
         });
     },
     update() {

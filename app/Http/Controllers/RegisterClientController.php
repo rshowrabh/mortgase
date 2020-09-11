@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use App\User;
 use Auth;
 use App\Invite;
+use App\UserRealtion;
 
 class RegisterClientController extends Controller
 {
@@ -49,7 +50,10 @@ class RegisterClientController extends Controller
         ]);
 
 
-        $user->roles()->attach($request->role);
+        $user->roles()->attach(3);
+
+        UserRealtion::create(['agents_table_id' => $request->agents_table_id, 'client_id' => $user->id]);
+
 
         Auth::loginUsingId($user->id);
         return redirect('/home');

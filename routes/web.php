@@ -47,6 +47,15 @@ Route::get('accept/{token}', 'InviteController@accept')->name('accept');
 
 
 
+Route::get('{brokarage}/{agent}', 'UniqueUrlController@index');
+
+
+
+
+
+
+
+
 
 
 

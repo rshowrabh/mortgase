@@ -23,30 +23,34 @@
 
 @include('inc.footer')
 <script>
-  $.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-});
+     let broker_picture =   localStorage.getItem('broker_picture')
+     let  broker_banner =  localStorage.getItem('broker_banner')
+     let broker_body =  localStorage.getItem('broker_body')
+     let broker_button =  localStorage.getItem('broker_button')
+
+     let agent_picture =  localStorage.getItem('agent_picture')
+     let agent_license_no =   localStorage.getItem('agent_license_no')
+     let agent_id =   localStorage.getItem('agent_id')
+     let agent_name =   localStorage.getItem('agent_name')
+     let agent_phone =   localStorage.getItem('agent_phone')
 
 
-$.ajax({
-    type: 'get',
-    url: "api/get_agent_data",
-    success: function (response) {
-        const agent = response.data
-        $('#logo').attr('src', '/storage/images/'+agent.logo )
-        $('#logo').css('border-color', agent.color_system)
-        $('#button1').css('border-color', agent.color_system)
-        $('#agent_license').text(agent.agent_license_number) 
-        $('#agent_name').text(agent.name) 
-        $('#agent_phone').text(agent.phone) 
+
+        $('#logo').attr('src', '/storage/images/'+agent_picture )
+        $('#picture').attr('src', '/storage/images/'+broker_picture )
+        $('#logo').css('border-color', broker_button)
+        $('#picture').css('border-color', 'broker_button')
+        $('#button1').css('border-color', broker_button)
+        $('.btn-round').css('background-color', broker_button)
+        $('.navbar-white').css('background-color', broker_body)
+        $('#agent_license').text(agent_license_no) 
+        $('#agent_name').text(agent_name) 
+        $('#agent_phone').text(agent_phone) 
         
         $("#button1").hover(function(){
-  $(this).css('background-color', agent.color_system);
-  }, function(){
-  $(this).css("background-color", 'transparent');
-});
-    }
-});
+      $(this).css('background-color', agent.color_system);
+      }, function(){
+      $(this).css("background-color", 'transparent');
+      });
+
 </script>

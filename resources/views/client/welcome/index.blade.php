@@ -3,7 +3,10 @@
 @include('inc.header')
 
 <body class="hold-transition login-page">
-    <section class="section header-bg-img h-100vh" id="home">
+   
+        @include('inc.client-nav')
+  
+    <section class="section header-bg-img " id="home">
             <div class="bg-overlay"></div>
             <div class="header-table">
                 <div class="header-table-center">
@@ -30,110 +33,18 @@
                 </div>
             </div>
         </section>
+        <div class="bottom_logo">
+            <img src="/images/logo.png" alt="" class="img-fluid">
+        </div>
  @include('inc.footer')
 
  <style>
 
-/*======================
-        1.BASIC
-========================*/
-
-body {
-    font-family: 'Nunito', sans-serif;
-    overflow-x: hidden;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-family: 'Montserrat', sans-serif;
-}
-
-a,
-a:hover,
-a:focus,
-button,
-button:focus {
-    text-decoration: none !important;
-    outline: none !important;
-    box-shadow: none !important;
-}
-
-::selection {
-    background: rgba(166, 175, 189, 0.3);
-}
-
-::-moz-selection {
-    background: rgba(166, 175, 189, 0.3);
-}
-
-#preloader {
+.bottom_logo{
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #fff;
-    z-index: 9999999;
+    right: 5%;
+    bottom: 5%;
 }
-
-#status {
-    width: 40px;
-    height: 40px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    margin: -20px 0 0 -20px;
-}
-
-.spinner {
-    margin: 0 auto;
-    font-size: 10px;
-    position: relative;
-    text-indent: -9999em;
-    border-top: 5px solid rgba(0, 0, 0, 0.2);
-    border-right: 5px solid rgba(0, 0, 0, 0.2);
-    border-bottom: 5px solid rgba(0, 0, 0, 0.2);
-    border-left: 5px solid #000;
-    -webkit-transform: translateZ(0);
-    -ms-transform: translateZ(0);
-    transform: translateZ(0);
-    -webkit-animation: load8 1.1s infinite linear;
-    animation: load8 1.1s infinite linear;
-}
-
-.spinner,
-.spinner:after {
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-}
-
-@-webkit-keyframes load8 {
-    0% {
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg);
-    }
-    100% {
-        -webkit-transform: rotate(360deg);
-        transform: rotate(360deg);
-    }
-}
-
-@keyframes load8 {
-    0% {
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg);
-    }
-    100% {
-        -webkit-transform: rotate(360deg);
-        transform: rotate(360deg);
-    }
-}
-
 /*==========================
         2.HELPER
 ============================*/
@@ -285,3 +196,35 @@ button:focus {
   backDelay:1700,
 });
  </script>
+ <script>
+     let broker_picture =   localStorage.getItem('broker_picture')
+     let broker_banner =  localStorage.getItem('broker_banner')
+     let broker_body =  localStorage.getItem('broker_body')
+     let broker_button =  localStorage.getItem('broker_button')
+
+     let agent_picture =  localStorage.getItem('agent_picture')
+     let agent_license_no =   localStorage.getItem('agent_license_no')
+     let agent_id =   localStorage.getItem('agent_id')
+     let agent_name =   localStorage.getItem('agent_name')
+     let agent_phone =   localStorage.getItem('agent_phone')
+
+
+
+        $('#logo').attr('src', '/storage/images/'+agent_picture )
+        $('#picture').attr('src', '/storage/images/'+broker_picture )
+        $('#logo').css('border-color', broker_button)
+        $('#picture').css('border-color', broker_button)
+        $('#button1').css('border-color', broker_button)
+        $('.btn-round').css('background-color', broker_button)
+        $('.navbar-white').css('background-color', broker_body)
+        $('#agent_license').text(agent_license_no) 
+        $('#agent_name').text(agent_name) 
+        $('#agent_phone').text(agent_phone) 
+        
+        $("#button1").hover(function(){
+      $(this).css('background-color', agent.color_system);
+      }, function(){
+      $(this).css("background-color", 'transparent');
+      });
+
+</script>

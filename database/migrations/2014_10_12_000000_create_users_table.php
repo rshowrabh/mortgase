@@ -17,12 +17,6 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('phone')->nullable();
-            $table->string('broker_name')->nullable();
-            $table->string('broker_license')->nullable();
-            $table->string('agent_license_number')->nullable();
-            $table->string('logo')->default('logo.png');
-            $table->string('color_system')->default('#FFFFFFF');
-            $table->boolean('lock_logo_color')->default(0);
             $table->string('picture')->default('picture.png');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

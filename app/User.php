@@ -81,12 +81,21 @@ class User extends Authenticatable
         return false;
     }
 
-    public function agent()
-    {
-        return $this->hasMany(UserRealtion::class, 'agent_id', 'id');
-    }
+    // public function agent()
+    // {
+    //     return $this->hasMany(UserRealtion::class, 'agent_id', 'id');
+    // }
     public function waveOne()
     {
         return $this->hasOne(WaveOne::class, 'user_id', 'id');
+    }
+    public function broker()
+    {
+        return $this->hasOne(Broker::class);
+    }
+
+    public function agent()
+    {
+        return $this->hasOne(Agent::class);
     }
 }
