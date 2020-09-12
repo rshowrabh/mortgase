@@ -317,7 +317,7 @@ export default {
 
     save() {
       axios
-        .post("/api/broker/", {
+        .post("/api/broker", {
           ...this.editedItem,
         })
         .then((response) => {
