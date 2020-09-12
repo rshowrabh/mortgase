@@ -98,4 +98,8 @@ class User extends Authenticatable
     {
         return $this->hasOne(Agent::class);
     }
+    public function client()
+    {
+        return $this->hasMany(UserRealtion::class, 'agent_id');
+    }
 }

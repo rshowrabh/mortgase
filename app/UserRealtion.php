@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class UserRealtion extends Model
 {
     protected $guarded = [];
+
     public function user()
     {
-        $this->belongsTo('App\User');
+        return  $this->belongsTo('App\User', 'client_id', 'id');
     }
 }

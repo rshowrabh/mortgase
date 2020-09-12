@@ -50,7 +50,7 @@ export default {
     },
     validate() {
       axios
-        .put("/api/agent/" + this.form.id, {
+        .put("/api/users/" + this.form.id, {
           ...this.form,
         })
         .then((response) => {

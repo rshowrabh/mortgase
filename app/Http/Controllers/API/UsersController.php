@@ -46,13 +46,13 @@ class UsersController extends Controller
 
         $users = User::whereHas('agent', function ($q) {
             $q->where('broker_id', auth()->user()->id);
-        })
+        })->with('agent')
             ->get();
 
         if ($user->isAdmin()) {
             $user = User::whereHas('roles', function ($query) {
                 $query->where('id', 2);
-            })
+            })->with('agent')
                 ->get();
             return  $user;
         }
@@ -129,40 +129,20 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->authorize('isAdmin');
+        // $this->authorize('isAdmin');
 
         $user = User::findOrFail($id);
         $this->validate($request, [
-            'name' => 'required|string|max:191',
             'email' => 'required|string|email|max:191',
             'phone' => 'digits_between:8,15',
         ]);
 
 
         if (trim($request->password) == '') {
-            $input = $request->except(['password', 'roles', 'role']);
+            $input = $request->except(['password']);
         } else {
-            $input = $request->except('roles');
+            $input = $request->all();
             $input['password'] = bcrypt($input['password']);
-        }
-
-        if ($request->logo !=  $user->logo) {
-            if ($user->logo == null) {
-                $input['logo'] = $user->logo;
-            } else {
-                $input['logo'] = time() . time() . '.' . explode('/', explode(':', substr($request->logo, 0, strpos($request->logo, ';')))[1])[1];
-            }
-
-            \Image::make($request->logo)->save(public_path('/storage/images/' . $input['logo']));
-        }
-        if ($request->picture !=  $user->picture) {
-            if ($user->picture == null) {
-                $input['picture'] = $user->picture;
-            } else {
-                $input['picture'] = time() . '.' . explode('/', explode(':', substr($request->picture, 0, strpos($request->picture, ';')))[1])[1];
-            }
-
-            \Image::make($request->picture)->save(public_path('/storage/images/' . $input['picture']));
         }
 
         $user->update($input);

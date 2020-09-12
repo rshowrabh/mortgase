@@ -39,4 +39,16 @@ class UniqueUrlController extends Controller
         // $agent = User::where
         return view('client.register', compact('bid', 'aid'));
     }
+
+    public function getEmail()
+    {
+        $user = auth('api')->user();
+        $client = $user->client;
+        $data = [];
+        foreach ($client as  $value) {
+            $data[] = $value->user;
+        };
+
+        return response()->json(['data' => $data]);
+    }
 }

@@ -28,9 +28,7 @@ Route::delete('users/{id}', 'API\UsersController@destroy');
 Route::put('users/{id}', 'API\UsersController@update');
 
 // Client Route
-Route::get('agent', 'API\AgentController@index');
 Route::get('get_agent_data', 'API\AgentController@getAgentData');
-Route::put('agent/{id}', 'API\AgentController@update');
 
 Route::post('/client_question/wave_one/store', 'ClientQuestionController@waveOne')->name('client.question.store');
 
@@ -41,7 +39,9 @@ Route::resource('/broker', 'API\BrokerageController');
 
 
 Route::get('/getBroker', 'API\AgentController@getBroker');
+
 Route::resource('/agent', 'API\AgentController');
 
 
 Route::get('uniqueUrl', 'UniqueUrlController@url');
+Route::get('getEmail', 'UniqueUrlController@getEmail');

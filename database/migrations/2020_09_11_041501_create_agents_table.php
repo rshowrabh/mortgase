@@ -14,11 +14,15 @@ class CreateAgentsTable extends Migration
     public function up()
     {
         Schema::create('agents', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->integer('user_id')->unsigned()->index();
+            $table->increments('id');
+            $table->unsignedBigInteger('user_id');
             $table->integer('broker_id')->unsigned()->index();
             $table->string('agent_license_number')->nullable();
             $table->timestamps();
+
+            $table->foreign('user_id')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
         });
     }
 

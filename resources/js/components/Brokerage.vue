@@ -200,13 +200,7 @@ export default {
     desserts: [],
     editedIndex: -1,
     editedItem: {
-      name: "",
-      email: "",
-      password: "",
-      picture: "picture.png",
       broker: {
-        logo: "logo.png",
-        broker_name: "",
         banner_color: "#FFFFFFF",
         body_color: "#FFFFFFF",
         button_color: "#FFFFFFF",
@@ -214,12 +208,11 @@ export default {
       },
     },
     defaultItem: {
-      name: "",
-      email: "",
-      password: "",
-      picture: "picture.png",
       broker: {
-        logo: "logo.png",
+        banner_color: "#FFFFFFF",
+        body_color: "#FFFFFFF",
+        button_color: "#FFFFFFF",
+        lock_color: false,
       },
     },
   }),
@@ -342,7 +335,7 @@ export default {
               icon: "error",
               title: "fill all items",
             });
-          }, 1000);
+          }, 3000);
         });
     },
     update() {

@@ -24,6 +24,20 @@
           </div>
         </div>
       </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(data,index) in email" :key="index">
+            <th>{{index + 1}}</th>
+            <th>{{data.email}}</th>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </template>
@@ -35,6 +49,7 @@ export default {
       submited: false,
       form: {},
       url: "",
+      email: "",
     };
   },
   methods: {
@@ -43,6 +58,16 @@ export default {
         axios.get("/api/uniqueUrl").then((response) => {
           console.log(response.data);
           this.url = response.data;
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    getEmail() {
+      try {
+        axios.get("/api/getEmail").then((response) => {
+          console.log(response.data);
+          this.email = response.data.data;
         });
       } catch (error) {
         console.log(error);
@@ -77,6 +102,7 @@ export default {
   mounted() {
     console.log("Component mounted.");
     this.getUrl();
+    this.getEmail();
   },
 };
 </script>

@@ -31,9 +31,11 @@ class BrokerageController extends Controller
             'name' => 'required|string|max:191',
             'email' => 'required|string|email|max:191|unique:users',
             'password' => 'required|min:8',
-            'phone' => 'digits_between:8,15',
-            'broker' => 'required',
+            'phone' => 'required|digits_between:8,15',
             'picture' => 'required',
+            'broker.logo' => 'required',
+            'broker.broker_name' => 'required',
+            'broker.broker_license' => 'required',
 
         ]);
 
@@ -58,6 +60,7 @@ class BrokerageController extends Controller
         $user->email = $input['email'];
         $user->picture = $input['picture'];
         $user->password = $input['password'];
+        $user->phone = $input['phone'];
 
 
         if ($user->save()) {
@@ -87,13 +90,7 @@ class BrokerageController extends Controller
 
         // $this->authorize('isAdmin');
 
-        $this->validate($request, [
-            'name' => 'required|string|max:191',
-            'email' => 'required|string|email|max:191|unique:users',
-            'phone' => 'required|digits_between:8,15',
-            'logo' => 'required',
-            'broker' => 'required',
-        ]);
+
 
 
         $user = User::findOrFail($id);
@@ -112,12 +109,12 @@ class BrokerageController extends Controller
 
 
 
-        if (trim($request->password) !== '') {
-            $user->password = $input['password'];
+        if ($request->has('password')) {
+            $user->password =  Hash::make($input['password']);
         }
 
 
-        if ($request->hasFile('picture')) {
+        if (strlen($request->picture) > 100) {
 
             $input['picture'] = time() . '.' . explode('/', explode(':', substr($request->picture, 0, strpos($request->picture, ';')))[1])[1];
 
@@ -135,11 +132,12 @@ class BrokerageController extends Controller
             $broker->broker_name = $input['broker']['broker_name'];
             $broker->broker_license = $input['broker']['broker_license'];
 
-            if ($request->hasFile('logo')) {
-                $input['logo'] = time() . time() . '.' . explode('/', explode(':', substr($request->logo, 0, strpos($request->logo, ';')))[1])[1];
+            if (strlen($request->broker['logo']) > 100) {
+
+                $input['broker']['logo'] = time() . time() . '.' . explode('/', explode(':', substr($request->broker['logo'], 0, strpos($request->broker['logo'], ';')))[1])[1];
                 $broker->logo = $input['broker']['logo'];
 
-                \Image::make($request->logo)->save(public_path('/storage/images/' . $input['logo']));
+                \Image::make($request->broker['logo'])->save(public_path('/storage/images/' . $input['broker']['logo']));
             }
 
             $broker->banner_color = $input['broker']['banner_color'];

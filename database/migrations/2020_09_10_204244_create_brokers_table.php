@@ -14,8 +14,8 @@ class CreateBrokersTable extends Migration
     public function up()
     {
         Schema::create('brokers', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->integer('user_id')->unsigned()->index();
+            $table->increments('id');
+            $table->unsignedBigInteger('user_id');
             $table->string('broker_name')->nullable();
             $table->string('broker_license')->nullable();
             $table->string('logo')->default('logo.png');
@@ -24,6 +24,10 @@ class CreateBrokersTable extends Migration
             $table->string('button_color')->default('#FFFFFFF');
             $table->boolean('lock_color')->default(0);
             $table->timestamps();
+
+            $table->foreign('user_id')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
         });
     }
 

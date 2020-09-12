@@ -63,13 +63,12 @@ class AgentController extends Controller
     public function store(Request $request)
     {
 
-
-
         $this->validate($request, [
             'name' => 'required|string|max:191',
             'email' => 'required|string|email|max:191|unique:users',
             'password' => 'required|min:8',
-            'phone' => 'digits_between:8,15',
+            'picture' => 'required',
+            'agent.agent_license_number' => 'required',
         ]);
 
         if ($request->has('picture')) {
@@ -88,14 +87,15 @@ class AgentController extends Controller
         $user->email = $input['email'];
         $user->picture = $input['picture'];
         $user->password = $input['password'];
+        $user->phone = $input['phone'];
 
 
         if ($user->save()) {
             $agent = $user->agent()->firstOrNew([]);
-            $agent->agent_license_number = $input['agent_license_number'];
+            $agent->agent_license_number = $input['agent']['agent_license_number'];
 
-            if ($request->has('broker')) {
-                $agent->broker_id = $request->broker;
+            if ($request->has('agent.broker_id')) {
+                $agent->broker_id = $input['agent']['broker_id'];
             } else {
                 $agent->broker_id = auth('api')->user()->id;
             }
@@ -149,15 +149,16 @@ class AgentController extends Controller
         $user = User::find($input['id']);
         $user->name = $input['name'];
         $user->email = $input['email'];
+        $user->phone = $input['phone'];
 
 
 
         if (trim($request->password) !== '') {
-            $user->password = $input['password'];
+            $user->password = Hash::make($input['password']);
         }
 
 
-        if ($request->hasFile('picture')) {
+        if (strlen($request->picture) > 100) {
 
             $input['picture'] = time() . '.' . explode('/', explode(':', substr($request->picture, 0, strpos($request->picture, ';')))[1])[1];
 
@@ -172,7 +173,8 @@ class AgentController extends Controller
 
         if ($user->save()) {
             $agent = $user->agent()->firstOrNew([]);
-            $agent->agent_license_number = $input['agent_license_number'];
+            $agent->agent_license_number = $input['agent']['agent_license_number'];
+            $agent->broker_id = $input['agent']['broker_id'];
             $agent->save();
         }
 

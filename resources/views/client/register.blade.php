@@ -42,7 +42,7 @@ $logo = $bid ? $bid->picture: '';
 
                 <form method="POST" action="{{ route('register.client') }}">
                     @csrf
-                    <input type="hidden" name="agents_table_id", value="{{$aid->agent->id}}">
+                    <input type="hidden" name="agent_id", value="{{$aid->agent->user_id}}">
                     <div class="input-group mb-3">
                         <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
                             name="name" value="{{ old('name') }}" required autocomplete="name" autofocus

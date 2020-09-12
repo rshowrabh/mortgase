@@ -52,7 +52,7 @@ class RegisterClientController extends Controller
 
         $user->roles()->attach(3);
 
-        UserRealtion::create(['agents_table_id' => $request->agents_table_id, 'client_id' => $user->id]);
+        UserRealtion::create(['agent_id' => $request->agent_id, 'client_id' => $user->id]);
 
 
         Auth::loginUsingId($user->id);

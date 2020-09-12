@@ -25,7 +25,7 @@
                       outlined
                       item-text="name"
                       item-value="id"
-                      v-model="editedItem.broker"
+                      v-model="editedItem.agent.broker_id"
                     ></v-select>
                   </v-col>
                   <v-col cols="12" sm="6" md="6">
@@ -62,9 +62,7 @@
 
                   <v-col cols="12" sm="6" md="6">
                     <v-text-field
-                      v-model="
-                                                editedItem.agent_license_number
-                                            "
+                      v-model="editedItem.agent.agent_license_number"
                       label="Agent License Number"
                       @click:append="show3 = !show3"
                     ></v-text-field>
@@ -187,10 +185,10 @@ export default {
     desserts: [],
     editedIndex: -1,
     editedItem: {
-      picture: "",
+      agent: {},
     },
     defaultItem: {
-      picture: "",
+      agent: {},
     },
   }),
 
