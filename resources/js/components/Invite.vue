@@ -1,6 +1,12 @@
 <template>
   <div class="container">
     <div class="row justify-content-center">
+      <h2 class="col-12">
+        Your Url :
+        <a
+          :href="'https://laravel.yourmortgageappy.ca/' +url[0]"
+        >laravel.yourmortgageappy.ca/{{url[0]}}</a>
+      </h2>
       <div class="col-md-8">
         <div class="card">
           <div class="card-header">Invite Via Email</div>
@@ -28,9 +34,20 @@ export default {
     return {
       submited: false,
       form: {},
+      url: "",
     };
   },
   methods: {
+    getUrl() {
+      try {
+        axios.get("/api/uniqueUrl").then((response) => {
+          console.log(response.data);
+          this.url = response.data;
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    },
     send() {
       this.submited = true;
       axios
@@ -59,6 +76,7 @@ export default {
   },
   mounted() {
     console.log("Component mounted.");
+    this.getUrl();
   },
 };
 </script>

@@ -1,12 +1,6 @@
 <template>
   <div class="container">
     <div class="row justify-content-center">
-      <h2>
-        Your Url :
-        <a
-          :href="'https://laravel.yourmortgageappy.ca/' +url[0]"
-        >laravel.yourmortgageappy.ca/{{url[0]}}</a>
-      </h2>
       <div class="col-md-8">
         <v-form ref="form" lazy-validation>
           <v-text-field v-model="form.email" label="E-mail" required></v-text-field>
@@ -41,20 +35,9 @@ export default {
     show3: false,
     show4: false,
     form: {},
-    url: "",
   }),
 
   methods: {
-    getUrl() {
-      try {
-        axios.get("/api/uniqueUrl").then((response) => {
-          console.log(response.data);
-          this.url = response.data;
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    },
     initialize() {
       try {
         axios.get("/api/agent").then((response) => {
