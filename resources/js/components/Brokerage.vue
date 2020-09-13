@@ -200,11 +200,13 @@ export default {
     desserts: [],
     editedIndex: -1,
     editedItem: {
+      picture: "",
       broker: {
         banner_color: "#FFFFFFF",
         body_color: "#FFFFFFF",
         button_color: "#FFFFFFF",
         lock_color: false,
+        logo: "",
       },
     },
     defaultItem: {

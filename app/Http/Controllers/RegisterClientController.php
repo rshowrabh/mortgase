@@ -20,6 +20,11 @@ class RegisterClientController extends Controller
 
     public function index()
     {
+        // $uid = auth()->user()->id;
+        // $rel =  UserRealtion::where('client_id', $uid)->agent_id->first();
+        // dd($rel);
+
+
         return view('client.welcome.index');
     }
 

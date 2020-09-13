@@ -1,5 +1,4 @@
 
-
 @include('inc.header')
 
 <body class="hold-transition login-page">
@@ -33,9 +32,7 @@
                 </div>
             </div>
         </section>
-        <div class="bottom_logo">
-            <img src="/images/logo.png" alt="" class="img-fluid">
-        </div>
+        
  @include('inc.footer')
 
  <style>
@@ -151,7 +148,7 @@
     background-position: center center;
     clip-path: polygon(0 0, 100% 0, 100% 80%, 70% 100%, 0 80%);
     width: 100%;
-}
+    background-attachment: fixed;
 
 .header-content{
     max-width: 800px;
@@ -197,10 +194,42 @@
 });
  </script>
  <script>
+        
+ </script>
+    <script>
+
+        var broker = {!! json_encode($bid->toArray()) !!};
+        var agent = {!! json_encode($aid->toArray()) !!};
+        console.log(broker)
+        
+
+        localStorage.setItem('broker_picture',broker.picture,60)
+        localStorage.setItem('broker_banner',broker.broker.banner_color,60)
+        localStorage.setItem('broker_body',broker.broker.body_color,60)
+        localStorage.setItem('broker_button',broker.broker.button_color,60)
+        localStorage.setItem('broker_license',broker.broker.broker_license,60)
+        localStorage.setItem('broker_logo',broker.broker.logo,60)
+
+
+        localStorage.setItem('agent_picture',agent.picture,60)
+        localStorage.setItem('agent_license_no',agent.agent.agent_license_number,60)
+        localStorage.setItem('agent_phone',agent.phone,60)
+        localStorage.setItem('agent_name',agent.name,60)
+        localStorage.setItem('agent_id',agent.agent.id,60)
+     
+    </script> 
+ <script>
+
+     
+
+
+
+
      let broker_picture =   localStorage.getItem('broker_picture')
      let broker_banner =  localStorage.getItem('broker_banner')
      let broker_body =  localStorage.getItem('broker_body')
      let broker_button =  localStorage.getItem('broker_button')
+     let broker_logo =  localStorage.getItem('broker_logo')
 
      let agent_picture =  localStorage.getItem('agent_picture')
      let agent_license_no =   localStorage.getItem('agent_license_no')
@@ -211,8 +240,9 @@
      
 
 
+       let  lighter_body =  broker_body.replace(/FF/g, "CC");
 
-        $('#logo').attr('src', '/storage/images/'+agent_picture )
+        $('#logo').attr('src', '/storage/images/'+ broker_logo )
         $('#picture').attr('src', '/storage/images/'+broker_picture )
         $('#logo').css('border-color', broker_button)
         $('#picture').css('border-color', broker_button)
@@ -223,12 +253,13 @@
         $('#agent_phone').text(agent_phone) 
         $('#broker_license').text(broker_license) 
         $('.navbar-white').css('background-color', broker_banner)
-        $('body').css('background-color', broker_body)
+        $('body').css({'background-color': lighter_body})
+        $('#footer').css('background', broker_body)
         
         $("#button1").hover(function(){
       $(this).css('background-color', agent.color_system);
       }, function(){
       $(this).css("background-color", 'transparent');
-      });
+      });  
 
 </script>

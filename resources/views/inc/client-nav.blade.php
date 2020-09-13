@@ -9,7 +9,7 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
              <ul class="navbar-nav mr-auto d-block">
-                 <h2>Mortgase Application</h2>
+                 <h2>{{ config('app.name', 'Laravel') }} Application</h2> 
 
                  <li style='padding:5px;' class="agent">
 
@@ -28,8 +28,8 @@
                 </a>
             </li>
             </ul>
-            <button id='button1' class="btn btn-outline-success my-2 my-sm-0"
-                type="submit">{{auth()->user()->name}}</button>
+            <a href="{{route('logout')}}" id='button1' class="btn btn-outline-success p-2 my-2 my-sm-0"
+                type="submit">Logout</a>
 
         </div>
     </div>

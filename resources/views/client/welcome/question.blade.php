@@ -6,7 +6,10 @@
         <div class="row pt-5">
             <div class="col-5 mx-auto">
                 <form action="{{route('client.question.store')}}" method="post">@csrf
-                <textarea name='about_me' class="border" name="" id="" cols="60" rows="10" placeholder="Tell us about yourself"></textarea>
+                <label>
+                    Please tell us about yourself
+                    <textarea name='about_me' class="border" name="" id="" cols="60" rows="10" ></textarea></label>
+                    <p>Now we are going to ask you about your employment status and etc.</p>
                 <button type="submit" class='btn btn-danger mt-2 text-white btn-round'>Continue</button>
                 </form>
             </div>

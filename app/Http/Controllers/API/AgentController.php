@@ -37,7 +37,7 @@ class AgentController extends Controller
 
             $users = User::whereHas('roles', function ($query) {
                 $query->where('id', 4);
-            })->select('name', 'id')
+            })->with('broker')
                 ->get();
             return  $users;
         }
@@ -72,8 +72,8 @@ class AgentController extends Controller
         ]);
 
         if ($request->has('picture')) {
-            $name_picture = time() . '.' . explode('/', explode(':', substr($request->picture, 0, strpos($request->picture, ';')))[1])[1];
-            \Image::make($request->picture)->save(public_path('/storage/images/' . $name_picture));
+            $name_picture = time()  . $request->email .  '-picture.' .  explode('/', explode(':', substr($request->picture, 0, strpos($request->picture, ';')))[1])[1];
+            \Image::make($request->picture)->save(public_path('/storage/images/'  . $name_picture));
         }
 
 

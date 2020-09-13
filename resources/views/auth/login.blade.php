@@ -16,7 +16,7 @@
 <body class="hold-transition login-page">
     <div class="login-box mx-auto">
         <div class="login-logo">
-            <a href="../../index2.html"><b>Admin</b>LTE</a>
+            <a href="/">{{ config('app.name', 'Laravel') }}</a>
         </div>
         <!-- /.login-logo -->
         <div class="card">
@@ -96,7 +96,7 @@
 
 
                 <p class="mb-0">
-                    <a href="{{route('register')}}" class="text-center">Register a new membership</a>
+                    {{--  <a href="{{route('register')}}" class="text-center"> I have a login </a>  --}}
                 </p>
             </div>
             <!-- /.login-card-body -->

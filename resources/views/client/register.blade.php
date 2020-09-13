@@ -1,10 +1,4 @@
 
-<?php
-
-$color = $bid ? $bid->brand_color: '';
-$logo = $bid ? $bid->picture: '';
-
-?>
 
 
 <!doctype html>
@@ -28,10 +22,10 @@ $logo = $bid ? $bid->picture: '';
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
-<body class="hold-transition login-page" style="background-color: {{$color}}">
+<body class="hold-transition login-page">
     <div class="register-box">
         <div class="register-logo">
-             <img style="height: 100px" src="/storage/images/{{$logo}}" class='img-fluid' alt="">
+             <img style="height: 100px" src="/images/logo.png" class='img-fluid' alt="">
             <p> Mortgage Application </p>
            
         </div>
@@ -143,7 +137,8 @@ $logo = $bid ? $bid->picture: '';
     <script>
         var broker = {!! json_encode($bid->toArray()) !!};
         var agent = {!! json_encode($aid->toArray()) !!};
-        console.log(agent)
+       // console.log(broker)
+        
 
         localStorage.setItem('broker_picture',broker.picture,60)
         localStorage.setItem('broker_banner',broker.broker.banner_color,60)

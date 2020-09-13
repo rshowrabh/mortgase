@@ -42,11 +42,11 @@ class BrokerageController extends Controller
         $input = $request->all();
 
 
-        $name_picture = time() . '.' . explode('/', explode(':', substr($request->picture, 0, strpos($request->picture, ';')))[1])[1];
+        $name_picture = time() . $request->email .  '-picture.' . explode('/', explode(':', substr($request->picture, 0, strpos($request->picture, ';')))[1])[1];
         \Image::make($request->picture)->save(public_path('/storage/images/' . $name_picture));
 
 
-        $name = time() . '.' . explode('/', explode(':', substr($input['broker']['logo'], 0, strpos($input['broker']['logo'], ';')))[1])[1];
+        $name = time() . $request->email .  '-logo.' . explode('/', explode(':', substr($input['broker']['logo'], 0, strpos($input['broker']['logo'], ';')))[1])[1];
         \Image::make($input['broker']['logo'])->save(public_path('/storage/images/' . $name));
 
 
@@ -116,7 +116,7 @@ class BrokerageController extends Controller
 
         if (strlen($request->picture) > 100) {
 
-            $input['picture'] = time() . '.' . explode('/', explode(':', substr($request->picture, 0, strpos($request->picture, ';')))[1])[1];
+            $input['picture'] = time()  . $request->email .  '-picture.' . explode('/', explode(':', substr($request->picture, 0, strpos($request->picture, ';')))[1])[1];
 
 
             \Image::make($request->picture)->save(public_path('/storage/images/' . $input['picture']));
@@ -134,7 +134,7 @@ class BrokerageController extends Controller
 
             if (strlen($request->broker['logo']) > 100) {
 
-                $input['broker']['logo'] = time() . time() . '.' . explode('/', explode(':', substr($request->broker['logo'], 0, strpos($request->broker['logo'], ';')))[1])[1];
+                $input['broker']['logo'] = time() . time() . $request->email .  '-logo.' . explode('/', explode(':', substr($request->broker['logo'], 0, strpos($request->broker['logo'], ';')))[1])[1];
                 $broker->logo = $input['broker']['logo'];
 
                 \Image::make($request->broker['logo'])->save(public_path('/storage/images/' . $input['broker']['logo']));

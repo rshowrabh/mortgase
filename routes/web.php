@@ -75,4 +75,5 @@ Route::get('clear', function () {
 
 Route::get('logout', function () {
     Auth::logout();
+    return redirect(route('login'));
 });

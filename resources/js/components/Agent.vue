@@ -23,7 +23,7 @@
                       label="Brokerage Name"
                       dense
                       outlined
-                      item-text="name"
+                      item-text="broker.broker_name"
                       item-value="id"
                       v-model="editedItem.agent.broker_id"
                     ></v-select>
@@ -241,7 +241,6 @@ export default {
     initialize() {
       try {
         axios.get("/api/users/agent").then((response) => {
-          console.log(response.data);
           this.desserts = [...response.data];
         });
       } catch (error) {
