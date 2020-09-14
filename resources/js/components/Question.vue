@@ -42,20 +42,20 @@
       </v-stepper-content>
 
       <v-stepper-content step="2">
-        <v-card class="mb-12"></v-card>
-        <v-row justify="center" align="center">
-          <v-col md="6">
-            <h1>
-              Are you canadian citizen
-              <br />or parmanent resident
-            </h1>
-            <v-radio-group v-model="user.q2" row>
-              <v-radio label="Yes" value="yes"></v-radio>
-              <v-radio label="No" value="no"></v-radio>
-            </v-radio-group>
-          </v-col>
-        </v-row>
-
+        <v-card class="mb-12">
+          <v-row justify="center" align="center">
+            <v-col md="6">
+              <h1>
+                Are you canadian citizen
+                <br />or parmanent resident
+              </h1>
+              <v-radio-group v-model="user.q2" row>
+                <v-radio label="Yes" value="yes"></v-radio>
+                <v-radio label="No" value="no"></v-radio>
+              </v-radio-group>
+            </v-col>
+          </v-row>
+        </v-card>
         <v-btn :disabled="!user.q2" class="white--text" :color="this.color" @click="e1 = 3">Continue</v-btn>
 
         <v-btn text @click="e1 = 1">Back</v-btn>
@@ -318,5 +318,8 @@ export default {
 .icon_button {
   padding-top: 10px;
   color: #fff;
+}
+.v-application--wrap {
+  min-height: 0px;
 }
 </style>

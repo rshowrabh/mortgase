@@ -1,6 +1,6 @@
 @include('inc.header')
 <body >
-<div class="wrapper" id='app'>
+<div class="wrapper" >
 
   <!-- Navbar -->
   @include('inc.client-nav')
@@ -11,13 +11,24 @@
   <!-- Content Wrapper. Contains page content -->
 
   
-  <div class="content-wrapper">
-    <v-app>
-       <vue-progress-bar></vue-progress-bar>
-       @yield('content')
+   <v-app id="app" standalone toolbar footer fill-height v-cloak light>
+ 
+
+      <main>
+        <v-container class="text-xs-center" >
+          <v-layout row child-flex justify-center align-center wrap>
+            <v-flex fill-height>
+             
+              @yield('content')
+
+            </v-flex>
+
+          </v-layout>
+
+        </v-container>
+      </main>
+
     </v-app>
-     
-  </div>
   <!-- /.content-wrapper -->
 
 
@@ -54,6 +65,7 @@
         $('#broker_license').text(broker_license) 
         $('.navbar-white').css('background-color', broker_banner)
         $('body').css({'background-color': lighter_body})
+        $('#app').css({'background-color': lighter_body})
         $('#footer').css('background', broker_body)
         
         $("#button1").hover(function(){
@@ -69,4 +81,7 @@
         padding: 5px;
         border:1px solid transparent;
     }
+    .v-application--wrap {
+      min-height: 500px;
+}
 </style>
