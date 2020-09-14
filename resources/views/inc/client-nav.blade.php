@@ -16,7 +16,7 @@
                  </li>
 
                 <li>Agent Name : <span id='agent_name'>Name</span></li>
-                <li>Agent Licesnse No : <span id='agent_license'>License</span></li>
+                <li>Agent License No : <span id='agent_license'>License</span></li>
                 <li>Agent Phone No : <span id='agent_phone'>Phone</span></li>
             </ul>
             <ul class="navbar-nav ml-auto d-flex">

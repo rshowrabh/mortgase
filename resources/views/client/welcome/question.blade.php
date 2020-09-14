@@ -9,8 +9,8 @@
                 <label>
                     Please tell us about yourself
                     <textarea name='about_me' class="border" name="" id="" cols="60" rows="10" ></textarea></label>
-                    <p>Now we are going to ask you about your employment status and etc.</p>
-                <button type="submit" class='btn btn-danger mt-2 text-white btn-round'>Continue</button>
+                    <p>Please share with us your details to start your mortgage application and journey.</p>
+                <button type="submit" class='btn  mt-2 text-white btn-round'>Continue</button>
                 </form>
             </div>
             <div class="col-7 mx-auto">

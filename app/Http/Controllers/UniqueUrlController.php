@@ -10,6 +10,19 @@ use Cookie;
 class UniqueUrlController extends Controller
 {
 
+    public function urlByAgent($broker_id, $agent_id)
+    {
+
+        $agent = User::find($agent_id);
+
+        $agent_name = preg_replace('/\s+/', '', $agent->name);
+
+
+        $broker = User::find($broker_id)->name;
+        $broker_name = preg_replace('/\s+/', '', $broker);
+
+        return response()->json([$broker_name . "/" . $agent_name]);
+    }
 
     public function url()
     {
@@ -21,10 +34,6 @@ class UniqueUrlController extends Controller
 
         $broker = User::find($bid)->name;
         $broker_name = preg_replace('/\s+/', '', $broker);
-
-
-
-
 
         return response()->json([$broker_name . "/" . $agent_name]);
     }

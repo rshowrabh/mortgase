@@ -16,7 +16,7 @@
 
     <v-stepper-items>
       <v-stepper-content step="1">
-        <v-card class="mb-12 mt-5 border" height="auto">
+        <v-card class="mb-12">
           <v-row align="center" justify="center">
             <v-col cols="12" md="5">
               <h4 class="mx-auto text-center">Ok great!</h4>
@@ -31,13 +31,18 @@
           </v-row>
         </v-card>
 
-        <v-btn :color="this.color" @click="e1 = 2">Continue</v-btn>
+        <v-btn
+          :disabled="!user.q1.title || !user.q1.first_name || !user.q1.middle_name || !user.q1.last_name"
+          class="white--text"
+          :color="this.color"
+          @click="e1 = 2"
+        >Continue</v-btn>
 
         <v-btn text>Cancel</v-btn>
       </v-stepper-content>
 
       <v-stepper-content step="2">
-        <v-card class="mb-12" color="grey lighten-1"></v-card>
+        <v-card class="mb-12"></v-card>
         <v-row justify="center" align="center">
           <v-col md="6">
             <h1>
@@ -51,13 +56,13 @@
           </v-col>
         </v-row>
 
-        <v-btn :color="this.color" @click="e1 = 3">Continue</v-btn>
+        <v-btn :disabled="!user.q2" class="white--text" :color="this.color" @click="e1 = 3">Continue</v-btn>
 
         <v-btn text @click="e1 = 1">Back</v-btn>
       </v-stepper-content>
 
       <v-stepper-content step="3">
-        <v-card class="mb-12 mt-5 border" height="auto">
+        <v-card class="mb-12" height="auto">
           <v-row align="center" justify="center">
             <v-col cols="12" md="5">
               <h4 class="mx-auto text-center">Ok great!</h4>
@@ -76,12 +81,17 @@
           </v-row>
         </v-card>
 
-        <v-btn :color="this.color" @click="e1 = 4">Continue</v-btn>
+        <v-btn
+          :disabled="!user.q3.street_no || !user.q3.street_name || !user.q3.unit_no || !user.q3.city || !user.q3.province || !user.q3.postal_code || !user.q3.country"
+          class="white--text"
+          :color="this.color"
+          @click="e1 = 4"
+        >Continue</v-btn>
 
         <v-btn @click="e1 = 2" text>Back</v-btn>
       </v-stepper-content>
       <v-stepper-content step="4">
-        <v-card class="mb-12 mt-5 border" height="auto">
+        <v-card class="mb-12" height="auto">
           <v-row align="center" justify="center">
             <v-col cols="12" md="5">
               <h2 class="mx-auto my-2">What is date of birth?</h2>
@@ -90,12 +100,12 @@
           </v-row>
         </v-card>
 
-        <v-btn :color="this.color" @click="e1 = 5">Continue</v-btn>
+        <v-btn :disabled="!user.q4" class="white--text" :color="this.color" @click="e1 = 5">Continue</v-btn>
 
         <v-btn text @click="e1 =3">Back</v-btn>
       </v-stepper-content>
       <v-stepper-content step="5">
-        <v-card class="mb-12 mt-5 border" height="auto">
+        <v-card class="mb-12" height="auto">
           <v-row align="center" justify="center">
             <v-col cols="12" md="5">
               <h1>What is your marital Status</h1>
@@ -107,23 +117,28 @@
           </v-row>
         </v-card>
 
-        <v-btn :color="this.color" @click="sendData">Continue</v-btn>
+        <v-btn
+          :disabled="!user.q6"
+          class="white--text"
+          :color="this.color"
+          @click="sendData"
+        >Continue</v-btn>
 
         <v-btn text @click="e1 =4">Back</v-btn>
       </v-stepper-content>
 
       <v-stepper-content step="6">
-        <v-card class="mb-12 mt-5 border" height="auto">
+        <v-card class="mb-12" height="auto">
           <h1>Do you have any dependents</h1>
           <v-row align="center" justify="center">
             <v-col cols="12" md="4">
               <div class="text-center icon">
                 <img width="50px" class="img-fluid" src="/dist/img/logo.png" alt />
                 <v-btn
+                  class="icon_button"
                   data-toggle="tooltip"
                   title="Your Text here"
                   @click="q7(1)"
-                  class="icon_button"
                   :color="this.color"
                 >Mortgase PreApproval</v-btn>
               </div>
@@ -133,10 +148,10 @@
               <div class="text-center icon">
                 <img width="50px" class="img-fluid" src="/dist/img/logo.png" alt />
                 <v-btn
+                  class="icon_button"
                   data-toggle="tooltip"
                   title="Your Text here"
                   @click="q7(2)"
-                  class="icon_button"
                   :color="this.color"
                 >New Home Purchage</v-btn>
               </div>
@@ -145,10 +160,10 @@
               <div class="text-center icon">
                 <img width="50px" class="img-fluid" src="/dist/img/logo.png" alt />
                 <v-btn
+                  class="icon_button"
                   data-toggle="tooltip"
                   title="Your Text here"
                   @click="q7(3)"
-                  class="icon_button"
                   :color="this.color"
                 >
                   Refinancing my
@@ -160,10 +175,10 @@
               <div class="text-center icon">
                 <img width="50px" class="img-fluid" src="/dist/img/logo.png" alt />
                 <v-btn
+                  class="icon_button"
                   data-toggle="tooltip"
                   title="Your Text here"
                   @click="q7(4)"
-                  class="icon_button"
                   :color="this.color"
                 >
                   Home Equity Line of
@@ -175,10 +190,10 @@
               <div class="text-center icon">
                 <img width="50px" class="img-fluid" src="/dist/img/logo.png" alt />
                 <v-btn
+                  class="icon_button"
                   data-toggle="tooltip"
                   title="Your Text here"
                   @click="q7(5)"
-                  class="icon_button"
                   :color="this.color"
                 >
                   Second Mortgage/
@@ -190,10 +205,10 @@
               <div class="text-center icon">
                 <img width="50px" class="img-fluid" src="/dist/img/logo.png" alt />
                 <v-btn
+                  class="icon_button"
                   data-toggle="tooltip"
                   title="Your Text here"
                   @click="q7(6)"
-                  class="icon_button"
                   :color="this.color"
                 >Reverse Mortgage</v-btn>
               </div>
@@ -202,9 +217,9 @@
               <div class="text-center icon">
                 <img width="50px" class="img-fluid" src="/dist/img/logo.png" alt />
                 <v-btn
+                  class="icon_button"
                   data-toggle="tooltip"
                   title="Your Text here"
-                  class="icon_button"
                   :color="this.color"
                 >
                   Mortgage Plus Heloc
@@ -216,10 +231,10 @@
               <div class="text-center icon">
                 <img width="50px" class="img-fluid" src="/dist/img/logo.png" alt />
                 <v-btn
+                  class="icon_button"
                   data-toggle="tooltip"
                   title="Your Text here"
                   @click="q7(7)"
-                  class="icon_button"
                   :color="this.color"
                 >Transfer My Mortgage</v-btn>
               </div>
@@ -302,5 +317,6 @@ export default {
 }
 .icon_button {
   padding-top: 10px;
+  color: #fff;
 }
 </style>

@@ -44,4 +44,5 @@ Route::resource('/agent', 'API\AgentController');
 
 
 Route::get('uniqueUrl', 'UniqueUrlController@url');
+Route::get('uniqueUrlByAgent/{broker_id}/{agent_id}', 'UniqueUrlController@urlByAgent');
 Route::get('getEmail', 'UniqueUrlController@getEmail');

@@ -16,7 +16,7 @@
 
     <v-stepper-items>
       <v-stepper-content step="1">
-        <v-card class="mb-12 mt-5 border" color="lighten-1" height="auto">
+        <v-card class="mb-12" height="auto">
           <v-row align="center" justify="center">
             <v-col cols="12" md="5">
               <h1>Will you live there, or is this an investment property?</h1>
@@ -28,12 +28,12 @@
           </v-row>
         </v-card>
 
-        <v-btn :color="this.color" @click="e1 = 2">Continue</v-btn>
+        <v-btn :disabled="!user.q6" :color="this.color" @click="e1 = 2">Continue</v-btn>
 
         <v-btn text>Cancel</v-btn>
       </v-stepper-content>
       <v-stepper-content step="2">
-        <v-card class="mb-12 mt-5 border" color="lighten-1" height="auto">
+        <v-card class="mb-12" height="auto">
           <h1>What type of property?</h1>
           <v-row align="center" justify="center">
             <v-col cols="12" md="3">
@@ -80,7 +80,7 @@
         </v-card>
       </v-stepper-content>
       <v-stepper-content step="3">
-        <v-card class="mb-12 mt-5 border" color="lighten-1" height="auto">
+        <v-card class="mb-12" height="auto">
           <v-row align="center" justify="center">
             <v-col cols="12" md="5">
               <h2 class="mx-auto">How much of a down payment do you have?</h2>
@@ -91,12 +91,12 @@
           </v-row>
         </v-card>
 
-        <v-btn :color="this.color" @click="e1 =4">Continue</v-btn>
+        <v-btn :disabled="!user.q1.title" :color="this.color" @click="e1 =4">Continue</v-btn>
 
         <v-btn text>Cancel</v-btn>
       </v-stepper-content>
       <v-stepper-content step="4">
-        <v-card class="mb-12 mt-5 border" color="lighten-1" height="auto">
+        <v-card class="mb-12" height="auto">
           <v-row align="center" justify="center">
             <v-col cols="12" md="5">
               <h2 class="mx-auto">Which city are you looking to buy in?</h2>
@@ -107,7 +107,7 @@
           </v-row>
         </v-card>
 
-        <v-btn :color="this.color" @click="e1 =5">Continue</v-btn>
+        <v-btn :disabled="!user.q2.title" :color="this.color" @click="e1 =5">Continue</v-btn>
 
         <v-btn text>Cancel</v-btn>
       </v-stepper-content>

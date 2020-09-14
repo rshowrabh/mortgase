@@ -78,7 +78,12 @@
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
-              <v-btn color="blue darken-1" text @click="editedIndex == -1 ? save() : update()">Save</v-btn>
+              <v-btn
+                :disabled="disable"
+                color="blue darken-1"
+                text
+                @click="editedIndex == -1 ? save() : update()"
+              >Save</v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>
@@ -88,15 +93,11 @@
 
             <v-card-title>
               {{ editedItem.name }}
-              <v-spacer></v-spacer>
-              <v-avatar>
-                <v-img
-                  v-bind:src="
-                                        '/storage/images/' + editedItem.logo
-                                    "
-                  width="50px"
-                ></v-img>
-              </v-avatar>
+              <v-spacer></v-spacer>Agent Url:
+              <a
+                target="_blank"
+                :href="'https://laravel.yourmortgageappy.ca/'+editedItem.url "
+              >{{editedItem.url}}</a>
             </v-card-title>
 
             <v-card-subtitle>
@@ -115,31 +116,35 @@
 
             <v-expand-transition>
               <div v-show="show">
-                <v-card-text>
+                <v-card-text
+                  v-for="id in broker"
+                  :key="id.id"
+                  v-if="id.broker.user_id == editedItem.agent.broker_id"
+                >
                   <p>Phone: {{ editedItem.phone }}</p>
                   <p>
                     Broker Name:
-                    {{ editedItem.broker_name }}
+                    {{ id.broker.broker_name}}
                   </p>
                   <p>
                     Broker License:
-                    {{ editedItem.broker_license }}
+                    {{ id.broker.broker_license}}
                   </p>
                   <p>
                     Agent License Number:
-                    {{ editedItem.agent_license_number }}
+                    {{ editedItem.agent.agent_license_number }}
                   </p>
+
                   <p>
-                    Color:
-                    <v-btn depressed large :color="editedItem.color_system">Text</v-btn>
-                  </p>
-                  <p>
-                    Lock Logo and Color:
-                    {{
-                    editedItem.lock_logo_color == 0
-                    ? "False"
-                    : "True"
-                    }}
+                    Broker Logo:
+                    <v-avatar>
+                      <v-img
+                        v-bind:src="
+                                        '/storage/images/' + id.broker.logo
+                                    "
+                        width="50px"
+                      ></v-img>
+                    </v-avatar>
                   </p>
                 </v-card-text>
               </div>
@@ -167,6 +172,7 @@ export default {
     show2: true,
     show3: false,
     show4: false,
+    disable: false,
     password: "Password",
     dialog: false,
     dialog_view: false,
@@ -226,7 +232,17 @@ export default {
     handleClick(item) {
       this.editedIndex = this.desserts.indexOf(item);
       this.editedItem = Object.assign({}, item);
-      this.dialog_view = true;
+      axios
+        .get(
+          "/api/uniqueUrlByAgent/" +
+            this.editedItem.agent.broker_id +
+            "/" +
+            this.editedItem.agent.user_id
+        )
+        .then((response) => {
+          this.editedItem.url = response.data[0];
+          this.dialog_view = true;
+        });
     },
     selectFilePicture(e) {
       console.log(e);
@@ -287,6 +303,7 @@ export default {
     },
 
     save() {
+      this.disable = true;
       axios
         .post("/api/agent", {
           ...this.editedItem,
@@ -298,8 +315,10 @@ export default {
           });
           this.initialize();
           this.close();
+          this.disable = false;
         })
         .catch((error) => {
+          this.disable = false;
           let obj = error.response.data.errors;
           Object.keys(obj).forEach(function (key) {
             console.log(obj[key][0]);
@@ -311,6 +330,7 @@ export default {
         });
     },
     update() {
+      this.disable = true;
       axios
         .put("/api/agent/" + this.editedItem.id, {
           ...this.editedItem,
@@ -322,8 +342,10 @@ export default {
           });
           this.initialize();
           this.close();
+          this.disable = false;
         })
         .catch((error) => {
+          this.disable = false;
           let obj = error.response.data.errors;
           Object.keys(obj).forEach(function (key) {
             console.log(obj[key][0]);

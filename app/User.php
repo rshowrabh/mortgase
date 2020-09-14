@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use App\Events\SendUserConfirmEmail;
 
 class User extends Authenticatable
 {
@@ -17,6 +18,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $guarded = [];
+
+    protected $dispatchesEvents = ['created' => SendUserConfirmEmail::class,];
 
     /**
      * The attributes that should be hidden for arrays.
