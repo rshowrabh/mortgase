@@ -95,7 +95,7 @@
           <v-row align="center" justify="center">
             <v-col cols="12" md="5">
               <h2 class="mx-auto my-2">What is date of birth?</h2>
-              <v-date-picker v-model="user.q4"></v-date-picker>
+              <v-date-picker :color="this.color" v-model="user.q4"></v-date-picker>
             </v-col>
           </v-row>
         </v-card>
