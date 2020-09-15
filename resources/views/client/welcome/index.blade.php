@@ -243,7 +243,7 @@
        let  lighter_body =  broker_body.replace(/FF/g, "CC");
 
         $('#logo').attr('src', '/storage/images/'+ broker_logo )
-        $('#picture').attr('src', '/storage/images/'+broker_picture )
+        $('#picture').attr('src', '/storage/images/'+agent_picture )
         $('#logo').css('border-color', broker_button)
         $('#picture').css('border-color', broker_button)
         $('#button1').css('border-color', broker_button)

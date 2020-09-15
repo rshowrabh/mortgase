@@ -8,7 +8,7 @@
                 <form action="{{route('client.question.store')}}" method="post">@csrf
                 <label>
                     Please tell us about yourself
-                    <textarea name='about_me' class="border" name="" id="" cols="60" rows="10" ></textarea></label>
+                    <textarea name='about_me' class="border" name="" id="" cols="30" rows="10" ></textarea></label>
                     <p>Please share with us your details to start your mortgage application and journey.</p>
                 <button type="submit" class='btn  mt-2 text-white btn-round'>Continue</button>
                 </form>

@@ -13528,29 +13528,42 @@ a.text-dark:focus {
   }
 }
 
-.navbar-expand .navbar-nav .dropdown-menu {
-  position: absolute;
-  width: 300px;
+nav {
+  border-bottom: 2px solid yellow;
+  background: #fff;
+  height: 135px;
+}
+
+body {
+  background-color: grey;
+}
+
+.question_div {
+  box-shadow: 3px 2px 7px 5px #aaaaaa;
+}
+
+.btn-round {
+  border-radius: 30px;
+  margin: 0px 5px;
+  outline: none;
+}
+
+.v-sheet.v-card:not(.v-sheet--outlined) {
+  box-shadow: none !important;
+}
+
+.v-btn__content {
+  font-size: 12px !important;
+  color: #fff;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  margin-top: 50px;
 }
 
 #logo {
-  border: 1px dashed red;
-  padding: 5px;
-}
-
-.border-nav {
-  border-bottom: 2px solid yellow;
-}
-
-#logo,
-#picture {
-  height: 100px;
-  padding: 5px;
-  border: 1px solid transparent;
-}
-
-.btn.focus,
-.btn:focus {
-  box-shadow: none;
+  max-width: 200px;
 }
 

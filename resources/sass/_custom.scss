@@ -1,25 +1,61 @@
-.navbar-expand .navbar-nav .dropdown-menu {
-    position: absolute;
-    width: 300px;
-}
+// .navbar-expand .navbar-nav .dropdown-menu {
+//     position: absolute;
+//     width: 300px;
+// }
 
-#logo {
-    border: 1px dashed red;
-    padding: 5px;
-}
+// #logo {
+//     border: 1px dashed red;
+//     padding: 5px;
+// }
 
-.border-nav {
+// .border-nav {
+//     border-bottom: 2px solid yellow;
+// }
+
+// #logo,
+// #picture {
+//     height: 100px;
+//     padding: 5px;
+//     border: 1px solid transparent;
+// }
+
+// .btn.focus,
+// .btn:focus {
+//     box-shadow: none;
+// }
+
+nav {
     border-bottom: 2px solid yellow;
+    background: #fff;
+    height: 135px;
 }
 
-#logo,
-#picture {
-    height: 100px;
-    padding: 5px;
-    border: 1px solid transparent;
+body {
+    background-color: grey;
 }
 
-.btn.focus,
-.btn:focus {
-    box-shadow: none;
+.question_div {
+    // background: #fff;
+    box-shadow: 3px 2px 7px 5px #aaaaaa;
+}
+
+.btn-round {
+    border-radius: 30px;
+    margin: 0px 5px;
+    outline: none;
+}
+.v-sheet.v-card:not(.v-sheet--outlined) {
+    box-shadow: none !important;
+}
+.v-btn__content {
+    font-size: 12px !important;
+    color: #fff;
+}
+footer {
+    position: fixed;
+    bottom: 0;
+    margin-top: 50px;
+}
+#logo {
+    max-width: 200px;
 }
