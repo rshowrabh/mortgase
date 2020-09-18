@@ -546,21 +546,548 @@
           </v-row>
         </v-card>
       </v-stepper-content>
-      <!-- <v-stepper-content step="11">
+      <v-stepper-content step="12">
+        <v-card class="mb-12">
+          <v-row justify="center" align="center">
+            <v-col md="12">
+              <p>Now the first question</p>
+              <h1>Whats your current employment status?</h1>
+              <v-radio-group v-model="user.l">
+                <div class="text-center">
+                  <v-btn outlined :color="user.l == 'Employed' ? this.color : ''" class="btn-1">
+                    <v-radio
+                      off-icon="mdi-checkbox-circle"
+                      on-icon="mdi-checkbox-marked-circle"
+                      label="Employed"
+                      value="Employed"
+                      :color="this.color"
+                    ></v-radio>
+                  </v-btn>
+                </div>
+                <div class="text-center" :border-color:="this.color">
+                  <v-btn :color="user.l == 'Unemployed' ? this.color : ''" outlined class="btn-1">
+                    <v-radio
+                      off-icon="mdi-checkbox-circle"
+                      on-icon="mdi-checkbox-marked-circle"
+                      label="Unemployed"
+                      value="Unemployed"
+                      :color="this.color"
+                    ></v-radio>
+                  </v-btn>
+                </div>
+                <div class="text-center" :border-color:="this.color">
+                  <v-btn :color="user.l == 'Retired' ? this.color : ''" outlined class="btn-1">
+                    <v-radio
+                      off-icon="mdi-checkbox-circle"
+                      on-icon="mdi-checkbox-marked-circle"
+                      label="Retired"
+                      value="Retired"
+                      :color="this.color"
+                    ></v-radio>
+                  </v-btn>
+                </div>
+              </v-radio-group>
+            </v-col>
+          </v-row>
+        </v-card>
+        <v-btn
+          :disabled="!user.l"
+          class="icon_button"
+          :color="this.color"
+          @click="e1 = e1+1"
+        >Continue</v-btn>
+
+        <v-btn text @click="e1 = e1-1">Back</v-btn>
+      </v-stepper-content>
+      <v-stepper-content step="13">
+        <v-card class="mb-12">
+          <v-row justify="center" align="center">
+            <v-col md="12">
+              <p>Thats great</p>
+              <h1>What type of employments</h1>
+              <v-radio-group v-model="user.m">
+                <div class="text-center">
+                  <v-btn
+                    outlined
+                    :color="user.m == 'Commissioned sales' ? this.color : ''"
+                    class="btn-1"
+                  >
+                    <v-radio
+                      off-icon="mdi-checkbox-circle"
+                      on-icon="mdi-checkbox-marked-circle"
+                      label="Commissioned sales"
+                      value="Commissioned sales"
+                      :color="this.color"
+                    ></v-radio>
+                  </v-btn>
+                </div>
+                <div class="text-center" :border-color:="this.color">
+                  <v-btn :color="user.m == 'Contract' ? this.color : ''" outlined class="btn-1">
+                    <v-radio
+                      off-icon="mdi-checkbox-circle"
+                      on-icon="mdi-checkbox-marked-circle"
+                      label="Contract"
+                      value="Contract"
+                      :color="this.color"
+                    ></v-radio>
+                  </v-btn>
+                </div>
+                <div class="text-center" :border-color:="this.color">
+                  <v-btn :color="user.m == 'Full Time' ? this.color : ''" outlined class="btn-1">
+                    <v-radio
+                      off-icon="mdi-checkbox-circle"
+                      on-icon="mdi-checkbox-marked-circle"
+                      label="Full Time"
+                      value="Full Time"
+                      :color="this.color"
+                    ></v-radio>
+                  </v-btn>
+                </div>
+                <div class="text-center" :border-color:="this.color">
+                  <v-btn :color="user.m == 'Part Time' ? this.color : ''" outlined class="btn-1">
+                    <v-radio
+                      off-icon="mdi-checkbox-circle"
+                      on-icon="mdi-checkbox-marked-circle"
+                      label="Part Time"
+                      value="Part Time"
+                      :color="this.color"
+                    ></v-radio>
+                  </v-btn>
+                </div>
+                <div class="text-center" :border-color:="this.color">
+                  <v-btn :color="user.m == 'Seasonal' ? this.color : ''" outlined class="btn-1">
+                    <v-radio
+                      off-icon="mdi-checkbox-circle"
+                      on-icon="mdi-checkbox-marked-circle"
+                      label="Seasonal"
+                      value="Seasonal"
+                      :color="this.color"
+                    ></v-radio>
+                  </v-btn>
+                </div>
+                <div class="text-center" :border-color:="this.color">
+                  <v-btn
+                    :color="user.m == 'Self employed' ? this.color : ''"
+                    outlined
+                    class="btn-1"
+                  >
+                    <v-radio
+                      off-icon="mdi-checkbox-circle"
+                      on-icon="mdi-checkbox-marked-circle"
+                      label="Self employed"
+                      value="Self employed"
+                      :color="this.color"
+                    ></v-radio>
+                  </v-btn>
+                </div>
+              </v-radio-group>
+            </v-col>
+          </v-row>
+        </v-card>
+        <v-btn
+          :disabled="!user.m"
+          class="icon_button"
+          :color="this.color"
+          @click="e1 = e1+1"
+        >Continue</v-btn>
+
+        <v-btn text @click="e1 = e1-1">Back</v-btn>
+      </v-stepper-content>
+      <v-stepper-content step="14">
+        <v-card class="mb-12">
+          <p>Thank you</p>
+          <h1>What best describes your field of work, job title and occupation ?</h1>
+
+          <v-row justify="center" align="center">
+            <v-col md="7">
+              <div class="form-group">
+                <select v-model="user.n.a" class="form-control m-3" id="exampleFormControlSelect2">
+                  <option selected value="1">Finace, insurance, Real State</option>
+                  <option selected value="3">Finace, insurance, Real State</option>
+                </select>
+                <select v-model="user.n.b" class="form-control m-3" id="exampleFormControlSelect2">
+                  <option selected value="1">Fund manager</option>
+                  <option selected value="3">Fund manager</option>
+                </select>
+                <select v-model="user.n.c" class="form-control m-3" id="exampleFormControlSelect2">
+                  <option selected value="1">Unknown</option>
+                  <option selected value="2">Unknown</option>
+                </select>
+              </div>
+            </v-col>
+          </v-row>
+        </v-card>
+        <v-btn
+          :disabled="!user.n"
+          class="icon_button"
+          :color="this.color"
+          @click="e1 = e1+1"
+        >Continue</v-btn>
+
+        <v-btn text @click="e1 = e1-1">Back</v-btn>
+      </v-stepper-content>
+      <v-stepper-content step="15">
+        <v-card class="mb-12">
+          <p>Thank you</p>
+          <h1>Whats your employer name and phone number ?</h1>
+
+          <v-row justify="center" align="center">
+            <v-col md="6">
+              <v-text-field
+                clear-icon="mdi-checkbox-marked-circle"
+                clearable
+                :color="this.color"
+                placeholder="name"
+                v-model="user.o.a"
+              ></v-text-field>
+              <v-text-field
+                clear-icon="mdi-checkbox-marked-circle"
+                clearable
+                :color="this.color"
+                placeholder="phone"
+                v-model="user.o.b"
+              ></v-text-field>
+            </v-col>
+          </v-row>
+        </v-card>
+        <v-btn
+          :disabled="!user.o"
+          class="icon_button"
+          :color="this.color"
+          @click="e1 = e1+1"
+        >Continue</v-btn>
+
+        <v-btn text @click="e1 = e1-1">Back</v-btn>
+      </v-stepper-content>
+      <v-stepper-content step="16">
+        <v-card class="mb-12">
+          <p>Thanks we are almost there</p>
+          <h1>Whats {{user.o.a}} address ?</h1>
+
+          <v-row justify="center" align="center">
+            <v-col md="6">
+              <v-text-field
+                clear-icon="mdi-checkbox-marked-circle"
+                clearable
+                :color="this.color"
+                placeholder="name"
+                v-model="user.p.a"
+              ></v-text-field>
+              <v-text-field
+                clear-icon="mdi-checkbox-marked-circle"
+                clearable
+                :color="this.color"
+                placeholder="phone"
+                v-model="user.p.b"
+              ></v-text-field>
+              <v-text-field
+                clear-icon="mdi-checkbox-marked-circle"
+                clearable
+                :color="this.color"
+                placeholder="phone"
+                v-model="user.p.c"
+              ></v-text-field>
+              <v-text-field
+                clear-icon="mdi-checkbox-marked-circle"
+                clearable
+                :color="this.color"
+                placeholder="phone"
+                v-model="user.p.d"
+              ></v-text-field>
+              <v-text-field
+                clear-icon="mdi-checkbox-marked-circle"
+                clearable
+                :color="this.color"
+                placeholder="phone"
+                v-model="user.p.e"
+              ></v-text-field>
+              <v-text-field
+                clear-icon="mdi-checkbox-marked-circle"
+                clearable
+                :color="this.color"
+                placeholder="phone"
+                v-model="user.p.f"
+              ></v-text-field>
+              <v-text-field
+                clear-icon="mdi-checkbox-marked-circle"
+                clearable
+                :color="this.color"
+                placeholder="phone"
+                v-model="user.p.g"
+              ></v-text-field>
+              <v-text-field
+                clear-icon="mdi-checkbox-marked-circle"
+                clearable
+                :color="this.color"
+                placeholder="phone"
+                v-model="user.p.h"
+              ></v-text-field>
+            </v-col>
+          </v-row>
+        </v-card>
+        <v-btn
+          :disabled="!user.p"
+          class="icon_button"
+          :color="this.color"
+          @click="e1 = e1+1"
+        >Continue</v-btn>
+
+        <v-btn text @click="e1 = e1-1">Back</v-btn>
+      </v-stepper-content>
+      <v-stepper-content step="17">
+        <v-card class="mb-12">
+          <p>Thank you</p>
+          <h1>Whats your annula income at {{user.o.a}} ?</h1>
+
+          <v-row justify="center" align="center">
+            <v-col md="6">
+              <v-text-field
+                clear-icon="mdi-checkbox-marked-circle"
+                clearable
+                :color="this.color"
+                placeholder="name"
+                v-model="user.q.a"
+              ></v-text-field>
+              <v-text-field
+                clear-icon="mdi-checkbox-marked-circle"
+                clearable
+                :color="this.color"
+                placeholder="Bonous(optional)"
+                v-model="user.q.b"
+              ></v-text-field>
+              <v-text-field
+                clear-icon="mdi-checkbox-marked-circle"
+                clearable
+                :color="this.color"
+                placeholder="overtime(optional)"
+                v-model="user.q.c"
+              ></v-text-field>
+            </v-col>
+          </v-row>
+        </v-card>
+        <v-btn
+          :disabled="!user.q"
+          class="icon_button"
+          :color="this.color"
+          @click="e1 = e1+1"
+        >Continue</v-btn>
+
+        <v-btn text @click="e1 = e1-1">Back</v-btn>
+      </v-stepper-content>
+      <v-stepper-content step="18">
+        <v-card class="mb-12">
+          <p>Thank you</p>
+          <h1>How long have you worked at {{user.o.a}} ?</h1>
+
+          <v-row justify="center" align="center">
+            <v-col md="6">
+              <v-text-field
+                clear-icon="mdi-checkbox-marked-circle"
+                clearable
+                :color="this.color"
+                placeholder="years"
+                v-model="user.r.a"
+              ></v-text-field>
+              <v-text-field
+                clear-icon="mdi-checkbox-marked-circle"
+                clearable
+                :color="this.color"
+                placeholder="month"
+                v-model="user.r.b"
+              ></v-text-field>
+            </v-col>
+          </v-row>
+        </v-card>
+        <v-btn
+          :disabled="!user.r"
+          class="icon_button"
+          :color="this.color"
+          @click="e1 = e1+1"
+        >Continue</v-btn>
+
+        <v-btn text @click="e1 = e1-1">Back</v-btn>
+      </v-stepper-content>
+      <v-stepper-content step="19">
         <v-card class="mb-12 stepper" height="auto">
-          <p>Now the first question</p>
-          <h2>What is your emplyment status</h2>
+          <p>Okay now one to</p>
+          <h2>Do you have anyother source of income</h2>
+          <p>Please select all that apply</p>
+          <v-row align="center" justify="center">
+            <v-col cols="12" md="4">
+              <div class="text-center icon">
+                <img width="50px" class="img-fluid" src="/dist/img/logo.png" alt />
+                <v-text-field
+                  v-if="user.s.includes('Child Support')"
+                  v-model="user.u.a"
+                  style="width:140px"
+                  class="checkbox_text mt-3 ml-1"
+                  :color="this.color"
+                  autofocus
+                  placeholder="annual income"
+                ></v-text-field>
+                <p class="mt-3" style="color:#000">Child Support</p>
+
+                <v-checkbox :color="this.color" v-model="user.s" value="Child Support"></v-checkbox>
+              </div>
+            </v-col>
+            <v-col cols="12" md="4">
+              <div class="text-center icon">
+                <img width="50px" class="img-fluid" src="/dist/img/logo.png" alt />
+                <v-text-field
+                  v-if="user.s.includes('Commission')"
+                  v-model="user.u.b"
+                  style="width:140px"
+                  class="checkbox_text mt-3 ml-1"
+                  :color="this.color"
+                  autofocus
+                  placeholder="annual income $"
+                ></v-text-field>
+
+                <p class="mt-3" style="color:#000">Commission</p>
+
+                <v-checkbox :color="this.color" v-model="user.s" value="Commission"></v-checkbox>
+              </div>
+            </v-col>
+            <v-col cols="12" md="4">
+              <div class="text-center icon">
+                <img width="50px" class="img-fluid" src="/dist/img/logo.png" alt />
+                <v-text-field
+                  v-if="user.s.includes('Investment')"
+                  v-model="user.u.c"
+                  style="width:140px"
+                  class="checkbox_text mt-3 ml-1"
+                  :color="this.color"
+                  autofocus
+                  placeholder="annual income $"
+                ></v-text-field>
+
+                <p class="mt-3" style="color:#000">Investment</p>
+
+                <v-checkbox :color="this.color" v-model="user.s" value="Investment"></v-checkbox>
+              </div>
+            </v-col>
+            <v-col cols="12" md="4">
+              <div class="text-center icon">
+                <img width="50px" class="img-fluid" src="/dist/img/logo.png" alt />
+                <v-text-field
+                  v-if="user.s.includes('Part Time Work')"
+                  v-model="user.u.d"
+                  style="width:140px"
+                  class="checkbox_text mt-3 ml-1"
+                  :color="this.color"
+                  autofocus
+                  placeholder="annual income $"
+                ></v-text-field>
+                <p class="mt-3" style="color:#000">Part Time Work</p>
+                <v-checkbox :color="this.color" v-model="user.s" value="Part Time Work"></v-checkbox>
+                <v-card-text></v-card-text>
+              </div>
+            </v-col>
+            <v-col cols="12" md="4">
+              <div class="text-center icon">
+                <img width="50px" class="img-fluid" src="/dist/img/logo.png" alt />
+                <v-text-field
+                  v-if="user.s.includes('Penstion/Disability')"
+                  v-model="user.u.e"
+                  style="width:140px"
+                  class="checkbox_text mt-3 ml-1"
+                  :color="this.color"
+                  autofocus
+                  placeholder="annual income $"
+                ></v-text-field>
+
+                <p class="mt-3" style="color:#000">Penstion/Disability</p>
+
+                <v-checkbox :color="this.color" v-model="user.s" value="Penstion/Disability"></v-checkbox>
+              </div>
+            </v-col>
+            <v-col cols="12" md="4">
+              <div class="text-center icon">
+                <img width="50px" class="img-fluid" src="/dist/img/logo.png" alt />
+                <v-text-field
+                  v-if="user.s.includes('RIF/LIF')"
+                  v-model="user.u.f"
+                  style="width:140px"
+                  class="checkbox_text mt-3 ml-1"
+                  :color="this.color"
+                  autofocus
+                  placeholder="annual income $"
+                ></v-text-field>
+
+                <p class="mt-3" style="color:#000">RIF/LIF</p>
+
+                <v-checkbox :color="this.color" v-model="user.s" value="RIF/LIF"></v-checkbox>
+              </div>
+            </v-col>
+
+            <v-col cols="12" md="4">
+              <div class="text-center icon">
+                <img width="50px" class="img-fluid" src="/dist/img/logo.png" alt />
+                <v-text-field
+                  v-if="user.s.includes('Seasonal Work')"
+                  v-model="user.u.g"
+                  style="width:140px"
+                  class="checkbox_text mt-3 ml-1"
+                  :color="this.color"
+                  autofocus
+                  placeholder="annual income $"
+                ></v-text-field>
+
+                <p class="mt-3" style="color:#000">Seasonal Work</p>
+
+                <v-checkbox :color="this.color" v-model="user.s" value="Seasonal Work"></v-checkbox>
+              </div>
+            </v-col>
+            <v-col cols="12" md="4">
+              <div class="text-center icon">
+                <img width="50px" class="img-fluid" src="/dist/img/logo.png" alt />
+                <v-text-field
+                  v-if="user.s.includes('Sposual Support')"
+                  v-model="user.u.h"
+                  style="width:140px"
+                  class="checkbox_text mt-3 ml-1"
+                  :color="this.color"
+                  autofocus
+                  placeholder="annual income $"
+                ></v-text-field>
+
+                <p class="mt-3" style="color:#000">Sposual Support</p>
+
+                <v-checkbox :color="this.color" v-model="user.s" value="Sposual Support"></v-checkbox>
+              </div>
+            </v-col>
+          </v-row>
+        </v-card>
+        <v-btn
+          class="icon_button"
+          :disabled="!user.s"
+          :color="this.color"
+          @click="e1 = e1+1"
+        >Continue</v-btn>
+
+        <v-btn @click="e1 = e1 -1" text>Cancel</v-btn>
+      </v-stepper-content>
+      <v-stepper-content step="20">
+        <v-card class="mb-12 stepper" height="auto">
+          <p>Lets review steves</p>
+          <h2>Your mortgage info summary</h2>
           <v-row align="center" justify="center">
             <v-col cols="12" md="11">
               <v-card class="mx-auto">
-                <v-radio-group>
-
-                </v-radio-group>
+                <div class="row pt-5">
+                  <div class="col-5 mx-auto">
+                    <p>Now we are going to ask you about your employment status, your workplace if you have one, and any other source of income. Make sure you have the information on hand and you will be able to move through this section swiftly!</p>
+                    <button @click="e1 = e1 +1 " class="btn mt-2 text-white btn-round">Almost Done</button>
+                  </div>
+                  <div class="col-7 mx-auto">
+                    <img class="img-fluid" src="/dist/img/photo2.png" alt />
+                  </div>
+                </div>
               </v-card>
             </v-col>
           </v-row>
         </v-card>
-      </v-stepper-content>-->
+      </v-stepper-content>
     </v-stepper-items>
   </v-stepper>
 </template>
@@ -569,8 +1096,8 @@
 export default {
   data() {
     return {
-      e1: 1,
-      steps: 11,
+      e1: 18,
+      steps: 19,
       color: localStorage.getItem("broker_button"),
       agent: {},
       user: {
@@ -580,6 +1107,17 @@ export default {
         q4: "",
         q6: "",
         q_e: [],
+        n: {
+          a: "1",
+          b: "1",
+          c: "1",
+        },
+        o: {},
+        p: {},
+        q: {},
+        r: {},
+        s: [],
+        u: {},
         f: 10000,
       },
     };
@@ -623,7 +1161,7 @@ export default {
     },
   },
   created() {
-    this.getAgentData();
+    // this.getAgentData();
   },
 };
 </script>
@@ -647,5 +1185,16 @@ export default {
   padding: 15px;
   text-align: center;
   border: 1px dashed #000;
+}
+.btn-1 {
+  height: 100px;
+  width: 300px;
+  line-height: 100px;
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid none;
+}
+.checkbox_text {
+  position: absolute;
 }
 </style>
