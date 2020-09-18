@@ -1336,6 +1336,76 @@
           </v-row>
         </v-card>
       </v-stepper-content>
+      <v-stepper-content step="26">
+        <v-card class="mb-12 stepper" height="auto">
+          <h2>Terms and condition</h2>
+          <p>Before you can submit your application we need to review the follwoing</p>
+          <hr />
+          <v-row align="center" justify="center">
+            <v-col cols="12" md="11">
+              <v-card class="mx-auto">
+                <h3>General</h3>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic, magnam expedita excepturi totam illum laudantium saepe, a eligendi ipsam, cum quo corporis id dicta. Deserunt incidunt reprehenderit error itaque rem placeat est veniam. Enim ipsa saepe fugiat perferendis aliquid voluptatem molestias commodi eligendi tempora accusamus modi temporibus illum nihil eos dicta quo rerum iure maiores dolor autem, possimus ex aperiam. Est eos totam eligendi nihil cupiditate sed cum, similique excepturi deleniti quaerat, repellat veritatis quibusdam provident aliquid dolores aliquam sapiente reiciendis saepe, quia modi nostrum suscipit. Eveniet veniam excepturi iure dolores distinctio vero facilis molestias similique minus? Velit dolore nemo cum quisquam quas veritatis itaque distinctio, doloremque molestiae, quidem magnam veniam nisi. Architecto mollitia aliquid dolorem magni minus repellendus illum provident. Minus voluptas odio adipisci blanditiis labore. Quis vitae in ipsum quam facere optio iure culpa quos illum laudantium iste iusto itaque ducimus, recusandae eum ipsam repellat magni nisi debitis dolor dolore nesciunt nobis! Nesciunt sequi corporis ut nemo eum ducimus incidunt, consequuntur quasi rerum dolor quo porro? Accusantium reiciendis tempore iste aut distinctio ex quo quisquam officiis necessitatibus vero quae, expedita aliquam, odit praesentium hic voluptates vitae facere natus repellendus omnis optio totam architecto, perferendis commodi? Consequuntur, culpa molestiae.</p>
+              </v-card>
+            </v-col>
+            <v-col cols="12" md="11">
+              <v-card class="mx-auto">
+                <p>Almost there</p>
+                <h3>We need consent to check your credit.</h3>
+                <hr />
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic, magnam expedita excepturi totam illum laudantium saepe, a eligendi ipsam, cum quo corporis id dicta. Deserunt incidunt reprehenderit error itaque rem placeat est veniam. Enim ipsa saepe fugiat perferendis aliquid voluptatem molestias commodi eligendi tempora accusamus modi temporibus illum nihil eos dicta quo rerum iure maiores dolor autem, possimus ex aperiam. Est eos totam eligendi nihil cupiditate sed cum, similique excepturi deleniti quaerat, repellat veritatis quibusdam provident aliquid dolores aliquam sapiente reiciendis saepe, quia modi nostrum suscipit. Eveniet veniam excepturi iure dolores distinctio vero facilis molestias similique minus? Velit dolore nemo cum quisquam quas veritatis itaque distinctio, doloremque molestiae, quidem magnam veniam nisi. Architecto mollitia aliquid dolorem magni minus repellendus illum provident. Minus voluptas odio adipisci blanditiis labore. Quis vitae in ipsum quam facere optio iure culpa quos illum laudantium iste iusto itaque ducimus, recusandae eum ipsam repellat magni nisi debitis dolor dolore nesciunt nobis! Nesciunt sequi corporis ut nemo eum ducimus incidunt, consequuntur quasi rerum dolor quo porro? Accusantium reiciendis tempore iste aut distinctio ex quo quisquam officiis necessitatibus vero quae, expedita aliquam, odit praesentium hic voluptates vitae facere natus repellendus omnis optio totam architecto, perferendis commodi? Consequuntur, culpa molestiae.</p>
+              </v-card>
+              <v-btn
+                type="button"
+                data-toggle="modal"
+                data-target="#exampleModalCenter"
+                :color="this.color"
+                class="ma-2 icon_button"
+              >Yes I concent</v-btn>
+
+              <v-btn
+                @click="e1 = e1 +1 "
+                color="blue-grey"
+                class="ma-2 black--text"
+              >No i dont concent</v-btn>
+
+              <!-- Modal -->
+              <div
+                class="modal fade"
+                id="exampleModalCenter"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="exampleModalCenterTitle"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <v-text-field :color="this.color" v-model="user.dd.a" placeholder="Name"></v-text-field>
+                      <v-text-field :color="this.color" v-model="user.dd.b" placeholder="Date"></v-text-field>
+                      <v-text-field :color="this.color" v-model="user.dd.c" placeholder="Telephone"></v-text-field>
+                    </div>
+                    <div class="modal-footer">
+                      <v-btn
+                        class="icon_button"
+                        :disabled="!user.dd.c"
+                        :color="this.color"
+                        @click="e1 = e1+1"
+                      >Continue</v-btn>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </v-col>
+          </v-row>
+        </v-card>
+      </v-stepper-content>
     </v-stepper-items>
   </v-stepper>
 </template>
@@ -1376,6 +1446,7 @@ export default {
         bb: {
           a: {},
         },
+        dd: {},
         f: 10000,
       },
     };
