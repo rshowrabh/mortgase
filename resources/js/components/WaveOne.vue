@@ -1088,6 +1088,254 @@
           </v-row>
         </v-card>
       </v-stepper-content>
+      <v-stepper-content step="21">
+        <v-card class="mb-12 stepper" height="auto">
+          <p>Okay now one to</p>
+          <h2>Do you have any of the following assets</h2>
+          <p>Please select all that apply</p>
+          <v-row align="center" justify="center">
+            <v-col cols="12" md="4">
+              <div class="text-center icon">
+                <img width="50px" class="img-fluid" src="/dist/img/logo.png" alt />
+
+                <p class="mt-3" style="color:#000">Automobiles</p>
+
+                <v-checkbox :color="this.color" v-model="user.x" value="Automobiles"></v-checkbox>
+              </div>
+            </v-col>
+
+            <v-col cols="12" md="4">
+              <div class="text-center icon">
+                <img width="50px" class="img-fluid" src="/dist/img/logo.png" alt />
+
+                <p class="mt-3" style="color:#000">Cash</p>
+
+                <v-checkbox :color="this.color" v-model="user.x" value="Cash"></v-checkbox>
+              </div>
+            </v-col>
+            <v-col cols="12" md="4">
+              <div class="text-center icon">
+                <img width="50px" class="img-fluid" src="/dist/img/logo.png" alt />
+
+                <p class="mt-3" style="color:#000">GIC/Term deposite</p>
+
+                <v-checkbox :color="this.color" v-model="user.x" value="GIC/Term deposite"></v-checkbox>
+              </div>
+            </v-col>
+            <v-col cols="12" md="4">
+              <div class="text-center icon">
+                <img width="50px" class="img-fluid" src="/dist/img/logo.png" alt />
+
+                <p class="mt-3" style="color:#000">Primary Resident</p>
+                <v-checkbox :color="this.color" v-model="user.x" value="Primary Resident"></v-checkbox>
+                <v-card-text></v-card-text>
+              </div>
+            </v-col>
+            <v-col cols="12" md="4">
+              <div class="text-center icon">
+                <img width="50px" class="img-fluid" src="/dist/img/logo.png" alt />
+
+                <p class="mt-3" style="color:#000">Rental Property</p>
+
+                <v-checkbox :color="this.color" v-model="user.x" value="Rental Property"></v-checkbox>
+              </div>
+            </v-col>
+            <v-col cols="12" md="4">
+              <div class="text-center icon">
+                <img width="50px" class="img-fluid" src="/dist/img/logo.png" alt />
+
+                <p class="mt-3" style="color:#000">RRSP</p>
+
+                <v-checkbox :color="this.color" v-model="user.x" value="RRSP"></v-checkbox>
+              </div>
+            </v-col>
+
+            <v-col cols="12" md="4">
+              <div class="text-center icon">
+                <img width="50px" class="img-fluid" src="/dist/img/logo.png" alt />
+
+                <p class="mt-3" style="color:#000">Secondary Property</p>
+
+                <v-checkbox :color="this.color" v-model="user.x" value="Secondary Property"></v-checkbox>
+              </div>
+            </v-col>
+            <v-col cols="12" md="4">
+              <div class="text-center icon">
+                <img width="50px" class="img-fluid" src="/dist/img/logo.png" alt />
+
+                <p class="mt-3" style="color:#000">Stock/Banf</p>
+
+                <v-checkbox :color="this.color" v-model="user.x" value="Stock/Banf"></v-checkbox>
+              </div>
+            </v-col>
+            <v-col cols="12" md="4">
+              <div class="text-center icon">
+                <img width="50px" class="img-fluid" src="/dist/img/logo.png" alt />
+
+                <p class="mt-3" style="color:#000">Other Assets</p>
+
+                <v-checkbox :color="this.color" v-model="user.x" value="Other Assets"></v-checkbox>
+              </div>
+            </v-col>
+          </v-row>
+        </v-card>
+        <v-btn
+          class="icon_button"
+          :disabled="!user.x"
+          :color="this.color"
+          @click="e1 = e1+1"
+        >Continue</v-btn>
+
+        <v-btn @click="e1 = e1 -1" text>Cancel</v-btn>
+      </v-stepper-content>
+      <v-stepper-content step="22">
+        <v-card class="mb-12 stepper" height="auto">
+          <p>Okay now one to</p>
+          <h2>Do you have any of the following assets</h2>
+          <p>Please select all that apply</p>
+          <v-row align="center" justify="center">
+            <v-col cols="12" md="12">
+              <v-expansion-panels popout>
+                <v-expansion-panel v-for="(item,i) in user.x" :key="i">
+                  <v-expansion-panel-header>{{item}}</v-expansion-panel-header>
+                  <v-expansion-panel-content>
+                    <v-text-field v-model="user.y.a[i]" placeholder="Cash"></v-text-field>
+                    <v-text-field v-model="user.y.b[i]" placeholder="Description"></v-text-field>
+                    <div style="display:block">
+                      Is this is a join asset
+                      <div class="form-check form-check-inline">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          name="inlineRadioOptions"
+                          id="inlineRadio1"
+                          value="Yes"
+                          v-model="user.y.c[i]"
+                        />
+                        <label class="form-check-label" for="inlineRadio1">Yes</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          name="inlineRadioOptions"
+                          id="inlineRadio2"
+                          value="No"
+                          v-model="user.y.c[i]"
+                        />
+                        <label class="form-check-label" for="inlineRadio2">No</label>
+                      </div>
+                    </div>
+                  </v-expansion-panel-content>
+                </v-expansion-panel>
+              </v-expansion-panels>
+            </v-col>
+          </v-row>
+        </v-card>
+        <v-btn
+          class="icon_button"
+          :disabled="!user.s"
+          :color="this.color"
+          @click="e1 = e1+1"
+        >Continue</v-btn>
+
+        <v-btn @click="e1 = e1 -1" text>Cancel</v-btn>
+      </v-stepper-content>
+      <v-stepper-content step="23">
+        <v-card class="mb-12 stepper" height="auto">
+          <p>Okay now one to</p>
+          <h2>Do you have any of the following liablities</h2>
+          <p>Please select all that apply</p>
+          <v-row align="center" justify="center">
+            <v-col cols="12" md="4">
+              <div class="text-center icon">
+                <img width="50px" class="img-fluid" src="/dist/img/logo.png" alt />
+
+                <p class="mt-3" style="color:#000">Alimony</p>
+
+                <v-checkbox :color="this.color" v-model="user.aa" value="Alimony"></v-checkbox>
+              </div>
+            </v-col>
+
+            <v-col cols="12" md="4">
+              <div class="text-center icon">
+                <img width="50px" class="img-fluid" src="/dist/img/logo.png" alt />
+
+                <p class="mt-3" style="color:#000">Child Support</p>
+
+                <v-checkbox :color="this.color" v-model="user.aa" value="Child Support"></v-checkbox>
+              </div>
+            </v-col>
+            <v-col cols="12" md="4">
+              <div class="text-center icon">
+                <img width="50px" class="img-fluid" src="/dist/img/logo.png" alt />
+
+                <p class="mt-3" style="color:#000">Private debt(eg.to family)</p>
+
+                <v-checkbox
+                  :color="this.color"
+                  v-model="user.aa"
+                  value="Private debt(eg.to family)"
+                ></v-checkbox>
+              </div>
+            </v-col>
+          </v-row>
+        </v-card>
+        <v-btn
+          class="icon_button"
+          :disabled="!user.aa"
+          :color="this.color"
+          @click="e1 = e1+1"
+        >Continue</v-btn>
+
+        <v-btn @click="e1 = e1 -1" text>Cancel</v-btn>
+      </v-stepper-content>
+      <v-stepper-content step="24">
+        <v-card class="mb-12 stepper" height="auto">
+          <p>Okay now one to</p>
+          <h2>What are the details of your liablities</h2>
+          <v-row align="center" justify="center">
+            <v-col cols="12" md="12">
+              <v-expansion-panels popout>
+                <v-expansion-panel v-for="(item,i) in user.aa" :key="i">
+                  <v-expansion-panel-header>{{item}}</v-expansion-panel-header>
+                  <v-expansion-panel-content>
+                    <v-text-field v-model="user.bb.a[i]" placeholder="Cash"></v-text-field>
+                  </v-expansion-panel-content>
+                </v-expansion-panel>
+              </v-expansion-panels>
+            </v-col>
+          </v-row>
+        </v-card>
+        <v-btn
+          class="icon_button"
+          :disabled="!user.bb"
+          :color="this.color"
+          @click="e1 = e1+1"
+        >Continue</v-btn>
+
+        <v-btn @click="e1 = e1 -1" text>Cancel</v-btn>
+      </v-stepper-content>
+      <v-stepper-content step="25">
+        <v-card class="mb-12 stepper" height="auto">
+          <h2>Almost Done</h2>
+          <v-row align="center" justify="center">
+            <v-col cols="12" md="11">
+              <v-card class="mx-auto">
+                <div class="row pt-5">
+                  <div class="col-5 mx-auto">
+                    <p>Now we are going to ask you about your employment status, your workplace if you have one, and any other source of income. Make sure you have the information on hand and you will be able to move through this section swiftly!</p>
+                    <button @click="e1 = e1 +1 " class="btn mt-2 text-white btn-round">Continue</button>
+                  </div>
+                  <div class="col-7 mx-auto">
+                    <img class="img-fluid" src="/dist/img/photo2.png" alt />
+                  </div>
+                </div>
+              </v-card>
+            </v-col>
+          </v-row>
+        </v-card>
+      </v-stepper-content>
     </v-stepper-items>
   </v-stepper>
 </template>
@@ -1096,8 +1344,8 @@
 export default {
   data() {
     return {
-      e1: 18,
-      steps: 19,
+      e1: 25,
+      steps: 25,
       color: localStorage.getItem("broker_button"),
       agent: {},
       user: {
@@ -1118,6 +1366,16 @@ export default {
         r: {},
         s: [],
         u: {},
+        x: [],
+        y: {
+          a: {},
+          b: {},
+          c: {},
+        },
+        aa: [],
+        bb: {
+          a: {},
+        },
         f: 10000,
       },
     };
