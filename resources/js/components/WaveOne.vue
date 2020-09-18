@@ -1381,7 +1381,7 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+                      <h5 class="modal-title" id="exampleModalLongTitle">Please fill all</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -1397,12 +1397,101 @@
                         :disabled="!user.dd.c"
                         :color="this.color"
                         @click="e1 = e1+1"
+                        data-dismiss="modal"
                       >Continue</v-btn>
                     </div>
                   </div>
                 </div>
               </div>
             </v-col>
+          </v-row>
+        </v-card>
+      </v-stepper-content>
+      <v-stepper-content step="27">
+        <v-card class="mb-12 stepper" height="auto">
+          <h2>Concent form</h2>
+          <hr />
+          <v-row align="center" justify="center">
+            <v-col cols="12" md="11">
+              <v-card class="mx-auto">
+                <h3>Credit Consent</h3>
+                <p>I/we warrant and confirm that the information given in the mortgage application form is true and correct and I/we understand that it is being used to determine my/our credit responsibility and to evaluate and respond to my/our request for mortgage financing. You are authorized to obtain any information you may require for these purposes from other sources (including, for example, credit bureau) and each source is hereby authorized to provide you with such information. I/we also understand, acknowledge and agree that the information given in the mortgage application form as well as other information you obtain in relation to my credit history may be disclosed to potential mortgage lenders, mortgage insurers, other service providers, organizations providing technological or other support services required in relation to this application and any other parties with whom I/we propose to have a financial relationship.</p>
+              </v-card>
+            </v-col>
+            <v-col cols="12" md="11">
+              <v-card class="mx-auto">
+                <h3>Employment Verification</h3>
+                <p>
+                  Verification Exchange, a service of Canada Workforce Solutions, streamlines the information between employers (data contributors) and verifiers (lenders, government agencies, background screeners, etc.) benefiting the employee- consumer by accelerating the decision process while adding security to the transaction and mitigating risk with real data, direct from the data contributor.
+                  I/we warrant and confirm that the information given in the mortgage application form is true and correct and I/we understand that it is being used to determine my/our Employment Verification and to evaluate and respond to my/our request for mortgage financing. You are authorized to obtain any information you may require for these purposes from other sources (including, for example, Employment Verification) and each source is hereby authorized to provide you with such information. I/we also understand, acknowledge and agree that the information given in the mortgage application form as well as other information you obtain in relation to my employment verification may be disclosed to potential mortgage lenders, mortgage insurers, other service providers, organizations providing technological or other support services required in relation to this application and any other parties with whom I/we propose to have a financial relationship. I/we give consent for you to pull and confirm my/our employment using the Verification Exchange service.
+                  I/we further acknowledge and agree that each potential mortgage lender, mortgage insurer or service provider to whom you provide the mortgage application and/or my/our personal information is permitted to receive such application and information and maintain records relating to me/us and my/our mortgage application and to hold, use, communicate and disclose personal information from me/us, including my/our Social Insurance Number (SIN) if I/we provide it, and collect information from me/us, you and from third persons, including credit bureau, credit reporting and collection agencies, financial institutions, my/our past and present employers, creditors and tenants, my/our spouse or any other person who has information about me/us for the purposes of recording, evaluating and responding to my/our application for mortgage financing or related activities and I/ we specifically consent to the release and disclosure of personal information by such persons to and among you and each potential mortgage lender, mortgage insurer or other service provider.
+                </p>
+              </v-card>
+            </v-col>
+            <v-col cols="12" md="11">
+              <v-card class="mx-auto">
+                <h3>Consent</h3>
+                <p>
+                  1. to collect, use, retain and disclose your personal information for seven (7) years following the later of a) the date of your latest application with us, or b) the date on which your loans or mortgages we have arranged for you have expired or been terminated; to inquire about and receive your personal information from: consumer reporting agencies, credit bureaus, real estate appraisers, your bank(s) or other financial institutions with whom you deal, your past mortgage brokers, your present and past employers and other third parties who may have information about your financial status; 2. That the approval or granting of any mortgage by a lender to you, as arranged by Citadel Mortgages is not to be construed or relied on by you as representing the value or condition of any underlying security or representing that you have the ability to repay the arranged mortgage debt;
+                  28
+                  3. I/we consent to receive commercial electronic messages and other forms of business information, communications and marketing regarding products and services that may be of interest to you; 4. That Citadel Mortgages and our mortgage broker or agent may receive fees or incentives from a lender for arranging a mortgage or loan for you. Fees and incentives include but are not limited to money, points or goods and services. Fees and incentives may vary between lenders for similar products and may also be dependent on the amounts and types of mortgage products originated. 5. That Citadel Mortgages and our agent have not provided you with any investment advice or services and has advised you of the need for independent financial and tax planning advice from a qualified professional. That we have offered you mortgage insurance product and an offer to have a licensed life insurance agent to contact you to review your options. 6. You Authorize Citadel Mortgages to share your information with our Home/Auto/Life Insurance firm to be able to offer you/ us competitive rates on all related products. 7. You authorize Citadel Mortgages to share your information with any referral source of business that you have requested during the mortgage process this applies to all referral sources that Citadel Mortgages offers.
+                  A copy of our privacy policy and terms is available on our website: www.citadelmortgages.ca
+                  CLIENT EXPRESS CONSENT & ACKNOWLEDGEMENT: I/We hereby acknowledge the information disclosed above and provide my express consent.
+                </p>
+              </v-card>
+            </v-col>
+
+            <v-col cols="12" md="12">
+              <v-row>
+                <v-col md="8">
+                  <v-text-field v-model="user.ee.a" placeholder="Accplicants Name"></v-text-field>
+                  <v-text-field v-model="user.eeb" placeholder="Signature"></v-text-field>
+                </v-col>
+                <v-col md="4">
+                  <v-text-field v-model="user.ee.c" placeholder="Date"></v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col md="8">
+                  <v-text-field v-model="user.ee.d" placeholder="Co-applicant Name"></v-text-field>
+                  <v-text-field v-model="user.ee.e" placeholder="Signature"></v-text-field>
+                </v-col>
+                <v-col md="4">
+                  <v-text-field v-model="user.ee.f" placeholder="Date"></v-text-field>
+                </v-col>
+              </v-row>Citadel Mortgages. Lic#12993 Head Office: 30 St Patrick Street 4th Floor, Toronto, Ontario M5T 3A3
+            </v-col>
+            <v-btn
+              class="icon_button"
+              :disabled="!user.bb"
+              :color="this.color"
+              @click="e1 = e1+1"
+            >Continue</v-btn>
+
+            <v-btn @click="e1 = e1 -1" text>Cancel</v-btn>
+          </v-row>
+        </v-card>
+      </v-stepper-content>
+      <v-stepper-content step="28">
+        <v-card class="mb-12 stepper" height="auto">
+          <h2>Concent form</h2>
+          <hr />
+          <v-row align="center" justify="center">
+            <v-col cols="12" md="11">
+              <v-card class="mx-auto">
+                <img src="images/concent.jpg" alt />
+                <img src="images/concent2.jpg" alt />
+              </v-card>
+            </v-col>
+
+            <v-btn
+              class="icon_button"
+              :disabled="!user.bb"
+              :color="this.color"
+              @click="e1 = e1+1"
+            >Continue</v-btn>
+
+            <v-btn @click="e1 = e1 -1" text>Cancel</v-btn>
           </v-row>
         </v-card>
       </v-stepper-content>
@@ -1447,6 +1536,7 @@ export default {
           a: {},
         },
         dd: {},
+        ee: {},
         f: 10000,
       },
     };
