@@ -1503,7 +1503,7 @@
 export default {
   data() {
     return {
-      e1: 25,
+      e1: 1,
       steps: 25,
       color: localStorage.getItem("broker_button"),
       agent: {},
